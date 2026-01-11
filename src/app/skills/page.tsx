@@ -1,7 +1,22 @@
 const skills = {
-  langauges: ["JavaScript", "TypeScript", "Python", "Java", "C++"],
-  frameworks: ["Node.js", "Express.js", "Django", "Flask", "React"],
-  tools: ["Git", "Docker", "PostgreSQL", "MongoDB", "AWS", "MySQL"],
+  Languages: ["Python", "JavaScript", "Java", "C++", "SQL"],
+
+  Backend: ["Django", "FastAPI", "Flask", "Node.js", "Express.js"],
+
+  Frontend: ["HTML", "CSS", "Tailwind CSS", "Bootstrap"],
+
+  Databases: ["MySQL", "PostgreSQL"],
+
+  Tools: ["Git", "GitHub", "Docker", "Postman"],
+
+  Concepts: [
+    "RESTful APIs",
+    "Data Structures & Algorithms",
+    "Full-Stack Development",
+    "Project Management",
+  ],
+
+  AI_Tools: ["Gemini API", "DeepFace", "PyTesseract"],
 };
 
 export default function Skills() {

@@ -6,10 +6,21 @@ export default function About() {
       <h2 className="text-2xl font-semibold mb-4">About Me</h2>
 
       <p className="text-gray-300 leading-relaxed">
-        I'm second year IT engineering student with strong intrest in backend
-        developement (Python, Js), problem solving, and buidling practical
-        systems. I actively particpate in hackathons, contribute in open-source,
-        and volunteer in technical communities.
+        I’m an Information Technology undergraduate at Thadomal Shahani
+        Engineering College, Mumbai, with a strong inclination toward backend
+        and full-stack development.
+        <br />
+        I’ve worked across startups and technical teams, building scalable web
+        applications, RESTful APIs, and backend systems using Python, Django,
+        FastAPI, Flask, and Node.js. My experience includes handling
+        concurrency, authentication, database optimization, and integrating
+        third-party services like payment gateways and AI APIs.
+        <br />
+        Beyond development, I’ve taken up leadership and coordination roles —
+        managing teams, organizing hackathons, and contributing to college
+        technical committees. I enjoy solving real-world problems, designing
+        clean system architectures, and shipping products that are reliable,
+        secure, and maintainable.
       </p>
     </main>
   );
