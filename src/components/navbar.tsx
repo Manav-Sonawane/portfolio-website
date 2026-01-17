@@ -12,7 +12,10 @@ export default function Navbar() {
       <ul className="flex gap-6 text-sm">
         {navItems.map((item) => (
           <li key={item.name}>
-            <Link href={item.href} className="hover:text-green-400 transition">
+            <Link
+              href={item.href}
+              className="text-base md:text-lg text-gray-400 tracking-wide hover:text-green-600 transition-colors"
+            >
               {">"} {item.name}
             </Link>
           </li>

@@ -38,13 +38,13 @@ export default function Home() {
 
         <section className="hidden md:flex justify-center">
           <Image
-            src="/manav3.jpg"
+            src="/manav.jpg"
             alt="Manav Sonawane"
             width={764}
             height={764}
             className="w-150
                     opacity-100
-                    rounded-full
+                    rounded-[200px]
                     mix-blend-screen
                     transition"
           />
