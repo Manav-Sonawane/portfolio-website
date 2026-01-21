@@ -21,6 +21,12 @@ const badgeConfig: Record<
     color: "06B6D4",
     logo: "tailwindcss",
   },
+  MongoDB: { label: "MongoDB", color: "47A248", logo: "mongodb" },
+  Cloudinary: { label: "Cloudinary", color: "002C71", logo: "cloudinary" },
+  Render: { label: "Render", color: "0078D4", logo: "render" },
+  Vercel: { label: "Vercel", color: "000000", logo: "vercel" },
+  "Socket.io": { label: "Socket.io", color: "010101", logo: "socketdotio" },
+  LM_Studio: { label: "LM Studio", color: "FF6F00", logo: "google" },
   Bootstrap: { label: "Bootstrap", color: "7952B3", logo: "bootstrap" },
   MySQL: { label: "MySQL", color: "4479A1", logo: "mysql" },
   PostgreSQL: { label: "PostgreSQL", color: "4169E1", logo: "postgresql" },
@@ -42,11 +48,20 @@ const skills = {
 
   Frontend: ["HTML", "CSS", "Tailwind CSS", "Bootstrap", "React", "Next.js"],
 
-  Databases: ["MySQL", "PostgreSQL"],
+  Databases: ["MySQL", "PostgreSQL", "MongoDB"],
 
-  Tools: ["Git", "GitHub", "Docker", "Postman"],
+  Tools: [
+    "Git",
+    "GitHub",
+    "Docker",
+    "Postman",
+    "Cloudinary",
+    "Render",
+    "Vercel",
+    "Socket.io",
+  ],
 
-  AI_Tools: ["Gemini API", "DeepFace", "PyTesseract"],
+  AI_Tools: ["Gemini API", "DeepFace", "PyTesseract", "LM_Studio"],
 };
 
 const leftColumn = ["Languages", "Backend", "Frontend"];
