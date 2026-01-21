@@ -14,7 +14,7 @@ export default function Navbar() {
           <li key={item.name}>
             <Link
               href={item.href}
-              className="text-base md:text-lg text-gray-400 tracking-wide hover:text-green-600 transition-colors"
+              className="text-base md:text-lg text-gray-400 tracking-wide hover:text-green-400 transition-colors duration-200"
             >
               {">"} {item.name}
             </Link>

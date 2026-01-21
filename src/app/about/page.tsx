@@ -28,10 +28,23 @@ export default function About() {
           </p>
         </section>
 
-        {/* RIGHT: IMAGE (pushed to extreme right) */}
-        <section className="hidden md:flex justify-center">
+        {/* RIGHT: IMAGES (pushed to extreme right) */}
+        <section className="hidden md:flex flex-col gap-8 justify-center items-center">
+          {/* Personal Photo */}
+          <div className="relative w-80 h-80 rounded-full overflow-hidden border-2 border-green-500/30 bg-black/40">
+            <Image
+              src="/manav.jpg"
+              alt="Manav Sonawane"
+              width={320}
+              height={320}
+              className="object-cover opacity-90 mix-blend-screen hover:opacity-100 transition-opacity"
+              priority
+            />
+          </div>
+
+          {/* Terminal Skills Image */}
           <div
-            className="relative w-[800px] h-[500px] rounded-2xl overflow-hidden
+            className="relative w-full max-w-2xl h-[400px] rounded-2xl overflow-hidden
                           border border-white/10 bg-black/40"
           >
             <Image
@@ -40,9 +53,8 @@ export default function About() {
               width={800}
               height={318}
               className="object-contain opacity-95 mix-blend-screen"
-              priority
             />
-          </div>  
+          </div>
         </section>
       </div>
     </main>

@@ -1,7 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
-import Image from "next/image";
+import StatCard from "@/components/StatCard";
+import { getGitHubStats } from "@/lib/github";
 
-export default function Home() {
+export default async function Home() {
+  const githubData = await getGitHubStats("Manav-Sonawane");
   return (
     <main className="min-h-[calc(100vh-80px)] px-10 pt-20">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -36,18 +38,41 @@ export default function Home() {
           </div>
         </section>
 
+        {/* GitHub Stats Panel */}
         <section className="hidden md:flex justify-center">
-          <Image
-            src="/manav.jpg"
-            alt="Manav Sonawane"
-            width={764}
-            height={764}
-            className="w-150
-                    opacity-100
-                    rounded-[200px]
-                    mix-blend-screen
-                    transition"
-          />
+          <div className="border border-gray-700 rounded-lg p-8 bg-black/30 space-y-6 w-full max-w-2xl">
+            <div className="mb-2">
+              <p className="text-green-400 text-2xl font-medium mb-2">
+                {">>"} github.com/{githubData.login}
+              </p>
+              <p className="text-gray-400 text-base">stats@realtime</p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-6">
+              <StatCard
+                title="Public Repos"
+                value={githubData.public_repos}
+                subtitle="repositories"
+              />
+              <StatCard
+                title="Followers"
+                value={githubData.followers}
+                subtitle="developers"
+              />
+            </div>
+
+            {/* GitHub Contribution Graph */}
+            <div className="mt-8 pt-6 border-t border-gray-800">
+              <p className="text-gray-400 text-sm mb-3">
+                Contribution Activity
+              </p>
+              <img
+                src={`https://ghchart.rshah.org/2ea043/${githubData.login}`}
+                alt="GitHub Contribution Graph"
+                className="w-full h-auto opacity-90 hover:opacity-100 transition-opacity"
+              />
+            </div>
+          </div>
         </section>
       </div>
     </main>

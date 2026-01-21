@@ -28,22 +28,6 @@ const badgeConfig: Record<
   GitHub: { label: "GitHub", color: "181717", logo: "github" },
   Docker: { label: "Docker", color: "2496ED", logo: "docker" },
   Postman: { label: "Postman", color: "FF6C37", logo: "postman" },
-  "RESTful APIs": { label: "RESTful APIs", color: "009688", logo: "fastapi" },
-  "Data Structures & Algorithms": {
-    label: "DSA",
-    color: "FF6B6B",
-    logo: "thealgorithms",
-  },
-  "Full-Stack Development": {
-    label: "Full Stack",
-    color: "4CAF50",
-    logo: "stackshare",
-  },
-  "Project Management": {
-    label: "Project Management",
-    color: "6C63FF",
-    logo: "trello",
-  },
   "Gemini API": { label: "Gemini API", color: "8E75B2", logo: "google" },
   DeepFace: { label: "DeepFace", color: "FF6F00", logo: "tensorflow" },
   PyTesseract: { label: "PyTesseract", color: "4285F4", logo: "google" },
@@ -62,22 +46,15 @@ const skills = {
 
   Tools: ["Git", "GitHub", "Docker", "Postman"],
 
-  Concepts: [
-    "RESTful APIs",
-    "Data Structures & Algorithms",
-    "Full-Stack Development",
-    "Project Management",
-  ],
-
   AI_Tools: ["Gemini API", "DeepFace", "PyTesseract"],
 };
 
 const leftColumn = ["Languages", "Backend", "Frontend"];
-const rightColumn = ["Databases", "Tools", "Concepts", "AI_Tools"];
+const rightColumn = ["Databases", "Tools", "AI_Tools"];
 
 function SkillSection({ title, items }: { title: string; items: string[] }) {
   return (
-    <section className="mb-12">
+    <section className="mb-12 pb-6 border-b border-gray-800 last:border-none">
       <h3 className="text-lg text-green-400 mb-4">{title.replace("_", " ")}</h3>
 
       <div className="flex flex-wrap gap-3">
@@ -86,7 +63,7 @@ function SkillSection({ title, items }: { title: string; items: string[] }) {
           if (!config) return null;
 
           const src = `https://img.shields.io/badge/${encodeURIComponent(
-            config.label
+            config.label,
           )}-${config.color}?style=for-the-badge&logo=${
             config.logo
           }&logoColor=white`;
@@ -98,8 +75,17 @@ function SkillSection({ title, items }: { title: string; items: string[] }) {
               alt={config.label}
               width={140}
               height={40}
-              className="h-10 w-auto"
               unoptimized
+              className="
+    h-10 w-auto
+    transition
+    duration-200
+    ease-out
+    brightness-50
+    hover:-translate-y-1
+    hover:brightness-100
+    hover:drop-shadow-[0_0_6px_rgba(34,197,94,0.35)]
+  "
             />
           );
         })}
