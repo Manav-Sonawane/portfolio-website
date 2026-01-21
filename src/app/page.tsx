@@ -2,14 +2,18 @@
 import Image from "next/image";
 import StatCard from "@/components/StatCard";
 import { getGitHubStats } from "@/lib/github";
+import { getLeetCodeStats } from "@/lib/leetcode";
 
 export default async function Home() {
   const githubData = await getGitHubStats("Manav-Sonawane");
+  const leetCodeData = await getLeetCodeStats("Manav_Sonawane");
   return (
     <main className="min-h-[calc(100vh-80px)] px-10 pt-20">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <section>
-          <p className="text-green-500 mb-3">manav-sonawane@portfolio:~$</p>
+          <p className="text-green-500 text-2xl mb-3">
+            {">>"} manav-sonawane@portfolio:~$
+          </p>
 
           <h1 className="text-8xl font-semibold mb-4">
             Hi, I'm
@@ -74,6 +78,25 @@ export default async function Home() {
                 height={150}
                 className="w-full h-auto opacity-90 hover:opacity-100 transition-opacity"
                 unoptimized
+              />
+            </div>
+            {/* LeetCode Stats */}
+            <div className="mt-8 pt-6 border-t border-gray-800 mb-2">
+              <p className="text-green-400 text-2xl font-medium mb-2">
+                {">>"} leetcode.com/Manav_Sonawane
+              </p>
+              <p className="text-gray-400 text-base">stats@realtime</p>
+            </div>
+            <div className="grid grid-cols-2 gap-6">
+              <StatCard
+                title="LeetCode Solved"
+                value={leetCodeData.totalSolved}
+                subtitle="Problems solved"
+              />
+
+              <StatCard
+                title="Easy / Medium / Hard"
+                value={`${leetCodeData.easySolved}/${leetCodeData.mediumSolved}/${leetCodeData.hardSolved}`}
               />
             </div>
           </div>
