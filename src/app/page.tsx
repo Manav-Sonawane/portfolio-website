@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+import Image from "next/image";
 import StatCard from "@/components/StatCard";
 import { getGitHubStats } from "@/lib/github";
 
@@ -66,10 +67,13 @@ export default async function Home() {
               <p className="text-gray-400 text-sm mb-3">
                 Contribution Activity
               </p>
-              <img
+              <Image
                 src={`https://ghchart.rshah.org/2ea043/${githubData.login}`}
                 alt="GitHub Contribution Graph"
+                width={800}
+                height={150}
                 className="w-full h-auto opacity-90 hover:opacity-100 transition-opacity"
+                unoptimized
               />
             </div>
           </div>
