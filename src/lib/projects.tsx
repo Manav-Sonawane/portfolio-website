@@ -1,0 +1,81 @@
+export const projects = [
+  {
+    slug: "Reclaim",
+    title: "Reclaim",
+    subtitle: "A Community Driven Lost n Found Platform",
+    tech: ["Next.js", "Express.js", "MongoDB"],
+    role: "Backend Developer",
+    highlights: [
+      "Built this project under Social-Cause domain during CSI-TSEC RUBIX'26 hackathon.",
+      "Developed RESTful APIs using Express.js to handle user authentication, item reporting, and retrieval processes.",
+      "Integrated cloud-based no-sql mongo cluster for efficent database operations.",
+    ],
+    github: [
+      "https://github.com/Manav-Sonawane/Reclaim-Backend",
+      "https://github.com/Manav-Sonawane/Reclaim-Frontend",
+    ],
+    live: "https://reclaim-frontend-phi.vercel.app/",
+  },
+  {
+    slug: "BookMySeat",
+    title: "BookMySeat",
+    subtitle:
+      "A full-stack BookMyShow like web application for movie ticket booking.",
+    tech: ["Django", "Bootstrap", "SQLite/PostgreSQL"],
+    role: "Full-Stack Developer",
+    highlights: [
+      "Built during internship at ElevanceSkills Technologies.",
+      "Bootstrap-based UI with seamless navigation and booking flow.",
+      "Django backend with session management and RESTful APIs.",
+      "SQLite/PostgreSQL database with concurrency control.",
+      "Razorpay payment gateway integration.",
+    ],
+    github: "https://github.com/Manav-Sonawane/BookMySeat",
+    live: "book-my-seat-tawny.vercel.app",
+  },
+  {
+    slug: "Trading-Bot",
+    title: "Trading-Bot",
+    subtitle: "An automated CLI-based trading bot built in python",
+    tech: ["Python", "API", "CLI"],
+    role: "Developer",
+    highlights: [
+      "Correct & Complete Binance Futures API Implementation",
+      "Production-Grade Structure + Safety Discipline",
+      "CLI-First Design That’s Actually Usable",
+    ],
+    github: "https://github.com/Manav-Sonawane/Trading-Bot",
+    live: null,
+  },
+  {
+    slug: "CareerForge-AI",
+    title: "CareerForge AI",
+    subtitle: "A AI powered webapp to parse, analyze and optimize resumes",
+    tech: ["Flask (Python)", "GeminiAPI", "NLP"],
+    role: "Backend Developer",
+    highlights: [
+      "Tesseract OCR based text extraction.",
+      "NLP based resume analysis and ATS scoring.",
+      "GeminiAPI based resume optimization.",
+      "Specific job fit score and learning courses suggestions.",
+    ],
+    github: "https://github.com/Manav-Sonawane/CareerForge-AI",
+    live: null,
+  },
+  {
+    slug: "CloudCode",
+    title: "CloudCode",
+    subtitle:
+      "Online Compiler providing web based coding environment for Python, JS, Java and C++",
+    tech: ["DoodleAPI", "Express.js", "MySQL"],
+    role: "Backend Developer",
+    highlights: [
+      "CodeMirror powered syntax-highlighting and bracket-completetion.",
+      "Support for 4 major languages (Python, JS, Java, C++).",
+      "DoodleAPI based code execution.",
+      "MySQL based user management and code-saving.",
+    ],
+    github: "https://github.com/Manav-Sonawane/CodeCloud",
+    live: "https://codecloud.onrender.com/",
+  },
+];
