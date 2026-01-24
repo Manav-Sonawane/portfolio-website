@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import Image from "next/image";
+import Link from "next/link";
 import StatCard from "@/components/StatCard";
 import { getGitHubStats } from "@/lib/github";
 import { getLeetCodeStats } from "@/lib/leetcode";
@@ -34,9 +35,11 @@ export default async function Home() {
           </ul>
 
           <div className="flex gap-4">
-            <button className="border border-gray-600 px-4 py-2 hover:border-green-500 hover:text-green-200">
-              View Projects
-            </button>
+            <Link href="/projects">
+              <button className="border border-gray-600 px-4 py-2 hover:border-green-500 hover:text-green-200">
+                View Projects
+              </button>
+            </Link>
             <button className="border border-gray-600 px-4 py-2 hover:border-green-500 hover:text-green-200">
               Contact Me
             </button>

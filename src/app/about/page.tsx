@@ -14,12 +14,16 @@ export default function About() {
 
           <p className="text-green-100 text-2xl leading-relaxed">
             I’m an I.T. Engg Student @TSEC, Mumbai, with a strong inclination
-            toward backend and full-stack development.
+            toward backend development.
+            <br />
+            <br />I am currently learning ethical hacking and cloud computing
+            while actively participating in hackathons and contributing to
+            open-source projects.
             <br />
             <br />
             I’ve worked across startups and technical teams, building scalable
             web applications, RESTful APIs, and backend systems using Python,
-            Django, FastAPI, Flask, and Node.js.
+            Django, Node.js, and databases like PostgreSQL and MongoDB.
             <br />
             <br />
             Beyond development, I’ve taken up leadership and coordination roles
