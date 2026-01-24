@@ -6,9 +6,7 @@ export default function Footer() {
         <p>© {new Date().getFullYear()} Manav Sonawane</p>
 
         {/* Center */}
-        <p className="text-green-400">
-          built_with_next.js • tailwind • terminal_ui
-        </p>
+        <p className="text-green-400">built_with_next.js</p>
 
         {/* Right */}
         <div className="flex gap-6">
@@ -25,12 +23,6 @@ export default function Footer() {
             className="hover:text-white transition"
           >
             LinkedIn
-          </a>
-          <a
-            href="mailto:sonawanemanav96@gmail.com"
-            className="hover:text-white transition"
-          >
-            Email
           </a>
         </div>
       </div>
