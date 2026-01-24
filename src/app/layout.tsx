@@ -33,12 +33,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Manav Sonawane" }],
   creator: "Manav Sonawane",
-  metadataBase: new URL("https://YOUR_DOMAIN_HERE"),
+  metadataBase: new URL("https://manav-sonawane.me"),
   openGraph: {
     title: "Manav Sonawane | Backend & Full-Stack Developer",
     description:
       "Portfolio of Manav Sonawane — Backend & Full-Stack Developer experienced in scalable systems, APIs, and real-world projects.",
-    url: "https://YOUR_DOMAIN_HERE",
+    url: "https://manav-sonawane.me",
     siteName: "Manav Sonawane Portfolio",
     images: [
       {

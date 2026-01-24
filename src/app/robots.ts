@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://YOUR_DOMAIN_HERE/sitemap.xml",
+    sitemap: "https://manav-sonawane.me/sitemap.xml",
   };
 }
