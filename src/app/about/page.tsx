@@ -3,17 +3,19 @@ import TerminalProfileCard from "@/components/TerminalProfileCard";
 
 export default function About() {
   return (
-    <main className="px-10 py-16 w-full">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
+    <main className="px-4 sm:px-6 md:px-10 py-10 md:py-16 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-start">
         {/* LEFT: TEXT (terminal-style, flush left) */}
         <section className="max-w-3xl">
           <p className="text-green-400 mb-4">
             manav-sonawane@portfolio:~/about$
           </p>
 
-          <h2 className="text-7xl font-semibold mb-6">About Me</h2>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold mb-6">
+            About Me
+          </h2>
 
-          <p className="text-green-100 text-2xl leading-relaxed">
+          <p className="text-green-100 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed">
             I’m an I.T. Engg Student @TSEC, Mumbai, with a strong inclination
             toward backend development.
             <br />
@@ -34,7 +36,7 @@ export default function About() {
         </section>
 
         {/* RIGHT: IMAGES (pushed to extreme right) */}
-        <section className="hidden md:flex flex-col gap-8 justify-center items-center">
+        <section className="flex flex-col gap-8 justify-center items-center">
           {/* Personal Photo */}
           <div className="relative w-80 h-80 rounded-full overflow-hidden border-2 border-green-500/30 bg-black/40">
             <Image
