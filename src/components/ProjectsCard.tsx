@@ -46,19 +46,21 @@ export default function ProjectCard({
               <div className="circle" id="bottom"></div>
             </div>
             <div className="back-content">
-              <small className="badge">{role}</small>
               <div className="description">
                 <div className="title">
                   <p className="title">
                     <strong>{title}</strong>
                   </p>
                 </div>
-                <p className="tagline">{tagline}</p>
                 <ul className="tech-stack">
                   {tech.map((t, i) => (
                     <li key={i}>{t}</li>
                   ))}
                 </ul>
+              </div>
+              <small className="badge mt-5">{role}</small>
+              <div className="mt-auto">
+                <p>{tagline}</p>
               </div>
             </div>
           </div>

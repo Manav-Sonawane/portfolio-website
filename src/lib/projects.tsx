@@ -2,7 +2,7 @@ export const projects = [
   {
     slug: "Reclaim",
     title: "Reclaim",
-    subtitle: "A Community Driven Lost n Found Platform",
+    tagline: "A Community Driven Lost n Found Platform",
     tech: ["Next.js", "Express.js", "MongoDB"],
     role: "Backend Developer",
     highlights: [
@@ -19,7 +19,7 @@ export const projects = [
   {
     slug: "BookMySeat",
     title: "BookMySeat",
-    subtitle:
+    tagline:
       "A full-stack BookMyShow like web application for movie ticket booking.",
     tech: ["Django", "Bootstrap", "SQLite/PostgreSQL"],
     role: "Full-Stack Developer",
@@ -36,9 +36,9 @@ export const projects = [
   {
     slug: "Trading-Bot",
     title: "Trading-Bot",
-    subtitle: "An automated CLI-based trading bot built in python",
+    tagline: "An automated CLI-based trading bot built in python",
     tech: ["Python", "API", "CLI"],
-    role: "Developer",
+    role: "Python Developer",
     highlights: [
       "Correct & Complete Binance Futures API Implementation",
       "Production-Grade Structure + Safety Discipline",
@@ -50,7 +50,7 @@ export const projects = [
   {
     slug: "CareerForge-AI",
     title: "CareerForge AI",
-    subtitle: "A AI powered webapp to parse, analyze and optimize resumes",
+    tagline: "A AI powered webapp to parse, analyze and optimize resumes",
     tech: ["Flask (Python)", "GeminiAPI", "NLP"],
     role: "Backend Developer",
     highlights: [
@@ -65,7 +65,7 @@ export const projects = [
   {
     slug: "CloudCode",
     title: "CloudCode",
-    subtitle:
+    tagline:
       "Online Compiler providing web based coding environment for Python, JS, Java and C++",
     tech: ["DoodleAPI", "Express.js", "MySQL"],
     role: "Backend Developer",
