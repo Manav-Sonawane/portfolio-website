@@ -2,13 +2,6 @@
 
 import ProjectsCard from "@/components/ProjectsCard";
 import { projects } from "@/lib/projects";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Projects",
-  description:
-    "Real-world backend and full-stack projects by Manav Sonawane, including scalable systems, APIs, and AI-powered applications.",
-};
 
 export default function Projects() {
   return (

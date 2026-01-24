@@ -2,13 +2,7 @@
 
 import ExperienceBlock from "@/components/ExperienceBlock";
 import { leftColumn, rightColumn } from "@/lib/experience";
-import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Experience",
-  description:
-    "Internships, college technical committees, campus ambassadorships and hackathons participated in by Manav Sonawane.",
-};
 
 export default function ExperiencePage() {
   return (
