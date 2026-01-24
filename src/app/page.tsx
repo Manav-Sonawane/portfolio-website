@@ -23,7 +23,8 @@ export default async function Home() {
           </h1>
 
           <p className="text-gray-300 mb-6 max-w-xl text-lg sm:text-xl md:text-2xl lg:text-3xl">
-            B.E. Information Technology |<br /> Python and Web Developer |
+            Pursuing B.E. I.T. |<br /> Python and Web
+            Developer |
           </p>
 
           <ul className="text-base sm:text-lg md:text-xl text-green-200 space-y-1 mb-8">

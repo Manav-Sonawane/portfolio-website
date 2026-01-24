@@ -19,7 +19,7 @@ export default function About() {
             I’m an I.T. Engg Student @TSEC, Mumbai, with a strong inclination
             toward backend development.
             <br />
-            <br />I am currently learning ethical hacking and cloud computing
+            <br />I am learning ethical hacking and cloud computing
             while actively participating in hackathons and contributing to
             open-source projects.
             <br />

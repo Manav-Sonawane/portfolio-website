@@ -16,8 +16,41 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Manav | Developer Portfolio",
-  description: "Terminal themed developer portfolio",
+  title: {
+    default: "Manav Sonawane | Backend & Full-Stack Developer",
+    template: "%s | Manav Sonawane",
+  },
+  description:
+    "Backend & Full-Stack Developer building scalable web applications, APIs, and production-ready systems. Experience with Django, FastAPI, Node.js, and system design.",
+  keywords: [
+    "Manav Sonawane",
+    "Backend Developer",
+    "Full Stack Developer",
+    "Django Developer",
+    "FastAPI Developer",
+    "Node.js Developer",
+    "Software Engineer Portfolio",
+  ],
+  authors: [{ name: "Manav Sonawane" }],
+  creator: "Manav Sonawane",
+  metadataBase: new URL("https://YOUR_DOMAIN_HERE"),
+  openGraph: {
+    title: "Manav Sonawane | Backend & Full-Stack Developer",
+    description:
+      "Portfolio of Manav Sonawane — Backend & Full-Stack Developer experienced in scalable systems, APIs, and real-world projects.",
+    url: "https://YOUR_DOMAIN_HERE",
+    siteName: "Manav Sonawane Portfolio",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Manav Sonawane Portfolio",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
