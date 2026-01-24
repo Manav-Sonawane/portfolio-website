@@ -1,6 +1,6 @@
 export default function Contact() {
   return (
-    <main className="px-10 py-20 max-w-4xl">
+    <main className="px-10 py-20 max-w-4xl mx-auto">
       <p className="text-green-400 mb-4">manav@portfolio:~/contact$</p>
 
       <h2 className="text-7xl font-semibold mb-10">Contact Me</h2>
