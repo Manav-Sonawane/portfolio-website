@@ -5,7 +5,7 @@ import { leftColumn, rightColumn } from "@/lib/experience";
 
 export default function ExperiencePage() {
   return (
-    <main className="px-10 py-16 max-w-7xl">
+    <main className="px-10 py-16 max-w-8xl">
       {/* Terminal path */}
       <p className="text-green-400 mb-4">manav@portfolio:~/experience$</p>
 

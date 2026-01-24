@@ -22,7 +22,7 @@ export default function Projects() {
             ))}
           </div>
         </div>
-        <p>{"(Click the cards to get project details...)"}</p>
+        <p className="py-5">{"(Click the cards to get project details...)"}</p>
       </section>
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar {
