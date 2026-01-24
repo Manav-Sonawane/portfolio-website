@@ -1,4 +1,5 @@
 import Image from "next/image";
+import TerminalProfileCard from "@/components/TerminalProfileCard";
 
 export default function About() {
   return (
@@ -46,19 +47,8 @@ export default function About() {
             />
           </div>
 
-          {/* Terminal Skills Image */}
-          <div
-            className="relative w-full max-w-2xl h-[400px] rounded-2xl overflow-hidden
-                          border border-white/10 bg-black/40"
-          >
-            <Image
-              src="/code.png"
-              alt="System profile"
-              width={800}
-              height={318}
-              className="object-contain opacity-95 mix-blend-screen"
-            />
-          </div>
+          {/* Terminal Profile Card */}
+          <TerminalProfileCard />
         </section>
       </div>
     </main>
