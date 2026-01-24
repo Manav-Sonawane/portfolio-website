@@ -5,6 +5,7 @@ const navItems = [
   { name: "about", href: "/about" },
   { name: "skills", href: "/skills" },
   { name: "projects", href: "/projects" },
+  { name: "experience", href: "/experience" },
 ];
 
 export default function Navbar() {
