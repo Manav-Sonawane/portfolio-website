@@ -10,10 +10,7 @@ export const projects = [
       "Developed RESTful APIs using Express.js to handle user authentication, item reporting, and retrieval processes.",
       "Integrated cloud-based no-sql mongo cluster for efficent database operations.",
     ],
-    github: [
-      "https://github.com/Manav-Sonawane/Reclaim-Backend",
-      "https://github.com/Manav-Sonawane/Reclaim-Frontend",
-    ],
+    github: ["https://github.com/Manav-Sonawane/Reclaim-Backend"],
     live: "https://reclaim-frontend-phi.vercel.app/",
   },
   {
