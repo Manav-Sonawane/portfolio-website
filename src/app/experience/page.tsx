@@ -6,27 +6,27 @@ import { leftColumn, rightColumn } from "@/lib/experience";
 
 export default function ExperiencePage() {
   return (
-    <main className="px-4 sm:px-6 md:px-10 py-10 md:py-16 max-w-7xl mx-auto">
+    <main className="px-4 sm:px-6 md:px-10 py-6 max-h-[calc(100vh-80px)] overflow-hidden max-w-7xl mx-auto">
       {/* Terminal path */}
-      <p className="text-green-400 mb-4 break-words">
+      <p className="text-green-400 mb-2 break-words text-sm">
         manav@portfolio:~/experience$
       </p>
 
       {/* Heading */}
-      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold mb-10 md:mb-16">
+      <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-semibold mb-6">
         Experience
       </h1>
 
       {/* Timeline */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-32 gap-y-10 md:gap-y-14">
-        <div className="space-y-14 space-x-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-16 gap-y-4">
+        <div className="space-y-6 space-x-0">
           {leftColumn.map((exp, idx) => (
             <ExperienceBlock key={idx} exp={exp} />
           ))}
         </div>
 
         {/* RIGHT COLUMN */}
-        <div className="space-y-14 space-x-0">
+        <div className="space-y-6 space-x-0">
           {rightColumn.map((exp, idx) => (
             <ExperienceBlock key={idx} exp={exp} />
           ))}

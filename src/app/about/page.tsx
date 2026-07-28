@@ -3,15 +3,15 @@ import TerminalProfileCard from "@/components/TerminalProfileCard";
 
 export default function About() {
   return (
-    <main className="px-4 sm:px-6 md:px-10 py-10 md:py-16 w-full">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-start">
+    <main className="px-4 sm:px-6 md:px-10 py-6 md:py-10 w-full max-h-[calc(100vh-80px)] overflow-hidden flex items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full">
         {/* LEFT: TEXT (terminal-style, flush left) */}
         <section className="max-w-3xl">
-          <p className="text-green-400 mb-4">
+          <p className="text-green-400 mb-2 text-sm">
             manav-sonawane@portfolio:~/about$
           </p>
 
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-semibold mb-4">
             About Me
           </h2>
 
@@ -36,9 +36,9 @@ export default function About() {
         </section>
 
         {/* RIGHT: IMAGES (pushed to extreme right) */}
-        <section className="flex flex-col gap-8 justify-center items-center">
+        <section className="flex flex-col gap-4 justify-center items-center">
           {/* Personal Photo */}
-          <div className="relative w-80 h-80 rounded-full overflow-hidden border-2 border-green-500/30 bg-black/40">
+          <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-2 border-green-500/30 bg-black/40">
             <Image
               src="/manav.jpg"
               alt="Manav Sonawane"
