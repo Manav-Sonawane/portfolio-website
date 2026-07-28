@@ -65,7 +65,7 @@ function SkillBadge({ skill, amber }: { skill: string; amber?: boolean }) {
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono border transition-all duration-200 ${
+      className={`inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded text-sm sm:text-base font-mono border transition-all duration-200 ${
         amber
           ? "border-[--amber-900] text-[--amber-400] bg-[--amber-900]/20 hover:border-[--amber-400] hover:shadow-[var(--glow-amber)]"
           : "border-[--phosphor-900] text-[--phosphor-400] bg-[--void-raised] hover:border-[--phosphor-600] hover:shadow-[var(--glow-phosphor-tight)]"
@@ -74,11 +74,11 @@ function SkillBadge({ skill, amber }: { skill: string; amber?: boolean }) {
       <img
         src={`https://cdn.simpleicons.org/${config.logo}/${amber ? "ffb454" : "4ade80"}`}
         alt={config.label}
-        className="w-3 h-3"
+        className="w-4.5 h-4.5"
         onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
       />
       {config.label}
-      {isActive && <span className="w-1 h-1 rounded-full bg-current animate-ping" />}
+      {isActive && <span className="w-1.5 h-1.5 rounded-full bg-current animate-ping" />}
     </span>
   );
 }
@@ -105,7 +105,7 @@ function SkillSection({
         >
           {amber ? "⚑ " : "// "}{displayTitle}
         </h3>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-3.5 sm:gap-4">
           {items.map((skill) => (
             <SkillBadge key={skill} skill={skill} amber={amber} />
           ))}
