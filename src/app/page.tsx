@@ -6,6 +6,7 @@ import CountUp from "@/components/fx/CountUp";
 import ScrollReveal from "@/components/fx/ScrollReveal";
 import MagneticButton from "@/components/fx/MagneticButton";
 import Typewriter from "@/components/fx/Typewriter";
+import PixelDecrypt from "@/components/fx/PixelDecrypt";
 import { getGitHubStats } from "@/lib/github";
 import { getLeetCodeStats } from "@/lib/leetcode";
 
@@ -29,9 +30,10 @@ export default async function Home() {
             <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-7xl font-bold mb-4 leading-tight">
               Hi, I&apos;m
               <br />
-              <span className="text-[--phosphor-400]">
-                Manav Sonawane
-              </span>
+              <PixelDecrypt
+                text="Manav Sonawane"
+                className="text-[--phosphor-400]"
+              />
               <span className="cursor-blink ml-1">_</span>
             </h1>
           </ScrollReveal>

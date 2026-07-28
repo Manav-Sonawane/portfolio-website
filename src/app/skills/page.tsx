@@ -126,10 +126,9 @@ export default function Skills() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.05}>
-          <PixelDecrypt
-            text="Skills"
-            className="text-5xl font-bold mb-6"
-          />
+          <h2 className="text-5xl font-bold mb-6">
+            <PixelDecrypt text="Skills" />
+          </h2>
         </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">

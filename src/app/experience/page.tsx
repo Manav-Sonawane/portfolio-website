@@ -15,10 +15,9 @@ export default function ExperiencePage() {
       </ScrollReveal>
 
       <ScrollReveal delay={0.05}>
-        <PixelDecrypt
-          text="Experience"
-          className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold mb-6"
-        />
+        <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <PixelDecrypt text="Experience" />
+        </h1>
       </ScrollReveal>
 
       {/* Two-column timeline */}

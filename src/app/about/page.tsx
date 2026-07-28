@@ -20,39 +20,32 @@ export default function About() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.05}>
-            <PixelDecrypt
-              text="About Me"
-              className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold mb-5 text-[--phosphor-100]"
-            />
+            <h2 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold mb-5 text-[--phosphor-100]">
+              <PixelDecrypt text="About Me" />
+            </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.15}>
-            <p className="text-[--ghost-400] text-base sm:text-lg leading-relaxed mb-4">
-              I&apos;m an I.T. Engg Student @TSEC, Mumbai, with a strong inclination
-              toward backend development.
+            <p className="text-[--ghost-400] text-base sm:text-lg leading-relaxed mb-4 font-mono">
+              I am a B.E. Information Technology student at Thadomal Shahani Engineering College (TSEC, Mumbai), currently in my third year (2024–2028) maintaining a CGPA of 9.12.
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.25}>
-            <p className="text-[--ghost-400] text-base sm:text-lg leading-relaxed mb-4">
-              I am learning ethical hacking and cloud computing while actively
-              participating in hackathons and contributing to open-source projects.
+            <p className="text-[--ghost-400] text-base sm:text-lg leading-relaxed mb-4 font-mono">
+              I specialize in backend engineering and full-stack development, with hands-on experience building highly concurrent web systems (such as BookMySeat with Django) and leading engineering teams during my internships at ElevanceSkills Technologies and ESPECA Technologies.
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.35}>
-            <p className="text-[--ghost-400] text-base sm:text-lg leading-relaxed mb-4">
-              I&apos;ve worked across startups and technical teams, building scalable
-              web applications, RESTful APIs, and backend systems using Python,
-              Django, Node.js, and databases like PostgreSQL and MongoDB.
+            <p className="text-[--ghost-400] text-base sm:text-lg leading-relaxed mb-4 font-mono">
+              My technical expertise spans Python, TypeScript, and Java, alongside databases like PostgreSQL (including pgvector and HNSW indexing for AI search), MongoDB, and MySQL, and cloud/DevOps platforms like Google Cloud Services, AWS, and Docker.
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.45}>
-            <p className="text-[--ghost-400] text-base sm:text-lg leading-relaxed">
-              Beyond development, I&apos;ve taken up leadership and coordination roles
-              — managing teams, organizing hackathons, and contributing to college
-              technical committees.
+            <p className="text-[--ghost-400] text-base sm:text-lg leading-relaxed font-mono">
+              Beyond engineering, I am a Technical Team Member at TSEC CodeStorm and a Student Ambassador for Ai+ Smartphone, blending leadership, technical coordination, and a passion for ethical hacking.
             </p>
           </ScrollReveal>
         </section>

@@ -51,5 +51,5 @@ export default function PixelDecrypt({ text, className }: { text: string; classN
     });
   }, [text, prefersReduced]);
 
-  return <h2 ref={ref} className={className}>{text}</h2>;
+  return <span ref={ref} className={className}>{text}</span>;
 }

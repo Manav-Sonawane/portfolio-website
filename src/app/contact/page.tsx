@@ -24,10 +24,9 @@ export default function Contact() {
       </ScrollReveal>
 
       <ScrollReveal delay={0.05}>
-        <PixelDecrypt
-          text="Contact Me"
-          className="text-5xl sm:text-7xl font-bold mb-8"
-        />
+        <h2 className="text-5xl sm:text-7xl font-bold mb-8">
+          <PixelDecrypt text="Contact Me" />
+        </h2>
       </ScrollReveal>
 
       <ScrollReveal delay={0.15}>

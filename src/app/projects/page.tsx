@@ -24,10 +24,9 @@ export default function Projects() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.05}>
-          <PixelDecrypt
-            text="Projects"
-            className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold mb-6"
-          />
+          <h2 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <PixelDecrypt text="Projects" />
+          </h2>
         </ScrollReveal>
 
         {/* Prime projects — large cards with amber blob */}
