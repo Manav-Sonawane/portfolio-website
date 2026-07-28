@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import CRTOverlay from "@/components/fx/CRTOverlay";
 import RouteTransition from "@/components/fx/RouteTransition";
 import BootSequence from "@/components/fx/BootSequence";
+import CursorGlow from "@/components/fx/CursorGlow";
 
 export const metadata: Metadata = {
   title: {
@@ -52,6 +53,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col antialiased overflow-x-hidden font-mono">
+        {/* Custom cursor glowing phosphor dot snapping to brackets [ ] */}
+        <CursorGlow />
         {/* Boot animation covering the screen on cold load */}
         <BootSequence />
         {/* Persistent CRT scanline + vignette overlay — felt, not seen */}
