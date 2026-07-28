@@ -90,7 +90,7 @@ function SkillSection({ title, items }: { title: string; items: string[] }) {
 
 export default function Skills() {
   return (
-    <main className="px-6 py-8 w-full max-h-[calc(100vh-80px)] overflow-hidden">
+    <main className="flex-1 px-6 py-8 flex flex-col justify-center w-full">
       <section className="max-w-[1400px] mx-auto">
         <p className="text-green-400 mb-2 text-sm">manav@portfolio:~/skills$</p>
 

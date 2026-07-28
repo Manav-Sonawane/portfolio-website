@@ -60,9 +60,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen antialiased overflow-x-hidden">
+      <body className="min-h-screen flex flex-col antialiased overflow-x-hidden">
         <Navbar />
-        {children}
+        <div className="flex-1 flex flex-col w-full">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>

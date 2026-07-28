@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="mt-24 border-t border-white/10">
+    <footer className="mt-8 border-t border-white/10 w-full">
       <div className="max-w-6xl mx-auto px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/60">
         {/* Left */}
         <p>© {new Date().getFullYear()} Manav Sonawane</p>

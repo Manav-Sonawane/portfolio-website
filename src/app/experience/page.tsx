@@ -6,7 +6,7 @@ import { leftColumn, rightColumn } from "@/lib/experience";
 
 export default function ExperiencePage() {
   return (
-    <main className="px-4 sm:px-6 md:px-10 py-6 max-h-[calc(100vh-80px)] overflow-hidden max-w-7xl mx-auto">
+    <main className="flex-1 px-4 sm:px-6 md:px-10 py-6 flex flex-col justify-center w-full max-w-7xl mx-auto">
       {/* Terminal path */}
       <p className="text-green-400 mb-2 break-words text-sm">
         manav@portfolio:~/experience$

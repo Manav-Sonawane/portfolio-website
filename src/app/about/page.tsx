@@ -3,7 +3,7 @@ import TerminalProfileCard from "@/components/TerminalProfileCard";
 
 export default function About() {
   return (
-    <main className="px-4 sm:px-6 md:px-10 py-6 md:py-10 w-full max-h-[calc(100vh-80px)] overflow-hidden flex items-center">
+    <main className="flex-1 px-4 sm:px-6 md:px-10 py-6 flex flex-col justify-center items-center w-full">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full">
         {/* LEFT: TEXT (terminal-style, flush left) */}
         <section className="max-w-3xl">

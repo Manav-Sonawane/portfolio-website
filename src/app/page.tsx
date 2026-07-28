@@ -9,7 +9,7 @@ export default async function Home() {
   const githubData = await getGitHubStats("Manav-Sonawane");
   const leetCodeData = await getLeetCodeStats("Manav_Sonawane");
   return (
-    <main className="min-h-[calc(100vh-80px)] px-4 sm:px-6 md:px-10 py-6 md:py-8 max-h-[calc(100vh-80px)] overflow-hidden flex items-center">
+    <main className="flex-1 px-4 sm:px-6 md:px-10 py-6 flex flex-col justify-center w-full">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center w-full">
         <section>
           <p className="text-green-500 text-base sm:text-lg md:text-xl mb-2">

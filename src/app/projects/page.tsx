@@ -5,7 +5,7 @@ import { projects } from "@/lib/projects";
 
 export default function Projects() {
   return (
-    <main className="px-4 sm:px-6 md:px-10 py-6 w-full max-h-[calc(100vh-80px)] overflow-hidden">
+    <main className="flex-1 px-4 sm:px-6 md:px-10 py-6 flex flex-col justify-center w-full">
       <section className="max-w-full mx-auto">
         <p className="text-green-400 mb-2 text-sm">
           manav-sonawane@portfolio:~/projects$
