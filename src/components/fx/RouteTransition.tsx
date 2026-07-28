@@ -3,22 +3,20 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { usePathname } from "next/navigation";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export default function RouteTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const container = useRef<HTMLDivElement>(null);
   const prefersReduced = useReducedMotion();
-  const isFirstMount = useRef(true);
-
-  // Keep track of first mount so we don't glitch on initial page load (let BootSequence handle it)
-  useEffect(() => {
-    isFirstMount.current = false;
-  }, []);
+  // Track the previous pathname to only animate on actual route CHANGES
+  const prevPathname = useRef<string | null>(null);
 
   useGSAP(() => {
-    if (isFirstMount.current) return;
+    // Skip animation on the very first render (same path, no change)
+    if (prevPathname.current === pathname) return;
+    prevPathname.current = pathname;
 
     if (prefersReduced) {
       gsap.fromTo(
@@ -30,8 +28,8 @@ export default function RouteTransition({ children }: { children: React.ReactNod
     }
 
     const tl = gsap.timeline();
-    // 1. Horizontal RGB-split glitch (3 quick offset frames)
-    tl.set(container.current, { filter: "none" })
+    // 1. RGB-split glitch
+    tl.set(container.current, { filter: "none", x: 0 })
       .to(container.current, {
         keyframes: [
           {
@@ -43,9 +41,9 @@ export default function RouteTransition({ children }: { children: React.ReactNod
           { x: 0, filter: "none", duration: 0.05 },
         ],
       })
-      // 2. Wipe to transparent/dark
+      // 2. Wipe to void
       .to(container.current, { opacity: 0, duration: 0.08 })
-      // 3. Slide and fade back in
+      // 3. Slide back in
       .fromTo(
         container.current,
         { opacity: 0, y: 8 },

@@ -1,117 +1,156 @@
 import Image from "next/image";
 import Link from "next/link";
-import StatCard from "@/components/StatCard";
-import { getGitHubStats } from "@/lib/github";
-import { getLeetCodeStats } from "@/lib/leetcode";
 import GlassPanel from "@/components/fx/GlassPanel";
 import MorphBlob from "@/components/fx/MorphBlob";
+import CountUp from "@/components/fx/CountUp";
+import ScrollReveal from "@/components/fx/ScrollReveal";
+import MagneticButton from "@/components/fx/MagneticButton";
+import Typewriter from "@/components/fx/Typewriter";
+import { getGitHubStats } from "@/lib/github";
+import { getLeetCodeStats } from "@/lib/leetcode";
 
 export default async function Home() {
   const githubData = await getGitHubStats("Manav-Sonawane");
   const leetCodeData = await getLeetCodeStats("Manav_Sonawane");
+
   return (
     <main className="flex-1 px-4 sm:px-6 md:px-10 py-6 flex flex-col justify-center w-full">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center w-full">
+
+        {/* LEFT: Hero */}
         <section>
-          <p className="text-green-500 text-base sm:text-lg md:text-xl mb-2">
-            {">>"} manav-sonawane@portfolio:~$
-          </p>
+          <ScrollReveal delay={0}>
+            <p className="text-[--phosphor-400] text-sm sm:text-base md:text-lg mb-2 font-mono">
+              {">> manav-sonawane@portfolio:~$"}
+            </p>
+          </ScrollReveal>
 
-          <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-7xl font-semibold mb-4">
-            Hi, I'm
-            <br />
-            <span className="text-green-500">Manav Sonawane</span>.
-          </h1>
+          <ScrollReveal delay={0.1}>
+            <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-7xl font-bold mb-4 leading-tight">
+              Hi, I&apos;m
+              <br />
+              <span className="text-[--phosphor-400]">
+                Manav Sonawane
+              </span>
+              <span className="cursor-blink ml-1">_</span>
+            </h1>
+          </ScrollReveal>
 
-          <p className="text-gray-300 mb-4 max-w-xl text-lg sm:text-xl md:text-2xl">
-            Pursuing B.E. I.T. |<br /> Python and Web Developer |
-          </p>
+          <ScrollReveal delay={0.2}>
+            <p className="text-[--ghost-400] mb-4 max-w-xl text-base sm:text-lg md:text-xl leading-relaxed">
+              Pursuing B.E. I.T. @ TSEC &nbsp;|&nbsp; Python &amp; Web Developer
+            </p>
+          </ScrollReveal>
 
-          <ul className="text-base sm:text-lg md:text-lg text-green-200 space-y-1 mb-6">
-            <li>Location: Mumbai, India</li>
-            <li>
-              Focus: backend systems, ethical hacking, full-stack web apps
-            </li>
-            <li>Currently: TE IT @ TSEC (CGPA 9.12)</li>
-          </ul>
+          <ScrollReveal delay={0.3}>
+            <ul className="text-sm sm:text-base text-[--phosphor-400]/80 space-y-1 mb-6 font-mono">
+              <li><span className="text-[--phosphor-600]">&gt;</span> Location: Mumbai, India</li>
+              <li><span className="text-[--phosphor-600]">&gt;</span> Focus: backend systems · ethical hacking · full-stack</li>
+              <li><span className="text-[--phosphor-600]">&gt;</span> Currently: TE IT @ TSEC (CGPA 9.12)</li>
+            </ul>
+          </ScrollReveal>
 
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/projects">
-              <button className="w-full sm:w-auto border border-gray-600 px-4 py-2 hover:border-green-500 hover:text-green-200">
-                View Projects
-              </button>
-            </Link>
-            <Link href="/contact">
-              <button className="w-full sm:w-auto border border-gray-600 px-4 py-2 hover:border-green-500 hover:text-green-200">
-                Contact Me
-              </button>
-            </Link>
-          </div>
+          <ScrollReveal delay={0.4}>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link href="/projects">
+                <MagneticButton className="w-full sm:w-auto border border-[--phosphor-600] px-5 py-2 text-[--phosphor-400] hover:border-[--phosphor-400] hover:bg-[--phosphor-400]/10 transition-all duration-200 rounded-sm font-mono text-sm">
+                  [&nbsp;View Projects&nbsp;]
+                </MagneticButton>
+              </Link>
+              <Link href="/contact">
+                <MagneticButton className="w-full sm:w-auto border border-[--ghost-700] px-5 py-2 text-[--ghost-400] hover:border-[--phosphor-400] hover:text-[--phosphor-400] transition-all duration-200 rounded-sm font-mono text-sm">
+                  [&nbsp;Contact Me&nbsp;]
+                </MagneticButton>
+              </Link>
+            </div>
+          </ScrollReveal>
         </section>
 
-        {/* GitHub Stats Panel */}
+        {/* RIGHT: Stats Panel */}
         <section className="flex justify-center w-full relative">
           <MorphBlob tone="phosphor" />
-          <GlassPanel className="p-4 sm:p-6 space-y-4 w-full max-w-2xl">
-            <div className="mb-1">
-              <p className="text-green-400 text-base sm:text-lg md:text-xl font-medium mb-1 break-words">
-                {">>"} github.com/{githubData.login}
-              </p>
-              <p className="text-gray-400 text-xs sm:text-sm">
-                stats@realtime
-              </p>
+          <GlassPanel className="p-4 sm:p-5 space-y-4 w-full max-w-2xl">
+            {/* GitHub header */}
+            <ScrollReveal delay={0.15}>
+              <div>
+                <p className="text-[--phosphor-400] text-sm sm:text-base font-mono mb-0.5">
+                  {">> github.com/"}{githubData.login}
+                </p>
+                <p className="text-[--ghost-400] text-xs">stats@realtime</p>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-2 gap-3">
+              <ScrollReveal delay={0.2}>
+                <GlassPanel className="p-3 rounded" noHover>
+                  <p className="text-[--ghost-400] text-xs mb-1">Public Repos</p>
+                  <p className="text-2xl font-bold text-[--phosphor-400]">
+                    <CountUp target={githubData.public_repos} />
+                  </p>
+                  <p className="text-[--ghost-700] text-xs">repositories</p>
+                </GlassPanel>
+              </ScrollReveal>
+              <ScrollReveal delay={0.25}>
+                <GlassPanel className="p-3 rounded" noHover>
+                  <p className="text-[--ghost-400] text-xs mb-1">Followers</p>
+                  <p className="text-2xl font-bold text-[--phosphor-400]">
+                    <CountUp target={githubData.followers} />
+                  </p>
+                  <p className="text-[--ghost-700] text-xs">developers</p>
+                </GlassPanel>
+              </ScrollReveal>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-              <StatCard
-                title="Public Repos"
-                value={githubData.public_repos}
-                subtitle="repositories"
-              />
-              <StatCard
-                title="Followers"
-                value={githubData.followers}
-                subtitle="developers"
-              />
-            </div>
+            {/* Contribution Graph */}
+            <ScrollReveal delay={0.3}>
+              <div className="pt-3 border-t border-[--phosphor-900]">
+                <p className="text-[--ghost-400] text-xs mb-2">Contribution Activity</p>
+                <Image
+                  src={`https://ghchart.rshah.org/2ea043/${githubData.login}`}
+                  alt="GitHub Contribution Graph"
+                  width={800}
+                  height={150}
+                  className="w-full h-auto opacity-80 hover:opacity-100 transition-opacity"
+                  unoptimized
+                />
+              </div>
+            </ScrollReveal>
 
-            {/* GitHub Contribution Graph */}
-            <div className="mt-4 pt-4 border-t border-gray-800">
-              <p className="text-gray-400 text-xs mb-2">
-                Contribution Activity
-              </p>
-              <Image
-                src={`https://ghchart.rshah.org/2ea043/${githubData.login}`}
-                alt="GitHub Contribution Graph"
-                width={800}
-                height={150}
-                className="w-full h-auto opacity-90 hover:opacity-100 transition-opacity"
-                unoptimized
-              />
-            </div>
-            {/* LeetCode Stats */}
-            <div className="mt-4 pt-4 border-t border-gray-800 mb-1">
-              <p className="text-green-400 text-base sm:text-lg md:text-xl font-medium mb-1 break-words">
-                {">>"} leetcode.com/Manav_Sonawane
-              </p>
-              <p className="text-gray-400 text-xs sm:text-sm">
-                stats@realtime
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-              <StatCard
-                title="LeetCode Solved"
-                value={leetCodeData.totalSolved}
-                subtitle="Problems solved"
-              />
+            {/* LeetCode */}
+            <ScrollReveal delay={0.35}>
+              <div className="pt-3 border-t border-[--phosphor-900]">
+                <p className="text-[--phosphor-400] text-sm sm:text-base font-mono mb-0.5">
+                  {">> leetcode.com/Manav_Sonawane"}
+                </p>
+                <p className="text-[--ghost-400] text-xs">stats@realtime</p>
+              </div>
+            </ScrollReveal>
 
-              <StatCard
-                title="Easy / Medium / Hard"
-                value={`${leetCodeData.easySolved}/${leetCodeData.mediumSolved}/${leetCodeData.hardSolved}`}
-              />
+            <div className="grid grid-cols-2 gap-3">
+              <ScrollReveal delay={0.4}>
+                <GlassPanel className="p-3 rounded" noHover>
+                  <p className="text-[--ghost-400] text-xs mb-1">Problems Solved</p>
+                  <p className="text-2xl font-bold text-[--phosphor-400]">
+                    <CountUp target={leetCodeData.totalSolved} />
+                  </p>
+                </GlassPanel>
+              </ScrollReveal>
+              <ScrollReveal delay={0.45}>
+                <GlassPanel className="p-3 rounded" noHover>
+                  <p className="text-[--ghost-400] text-xs mb-1">Easy / Med / Hard</p>
+                  <p className="text-lg font-bold text-[--phosphor-400]" style={{ fontVariantNumeric: "tabular-nums" }}>
+                    <CountUp target={leetCodeData.easySolved} />
+                    {" / "}
+                    <CountUp target={leetCodeData.mediumSolved} duration={1.4} />
+                    {" / "}
+                    <CountUp target={leetCodeData.hardSolved} duration={1.6} />
+                  </p>
+                </GlassPanel>
+              </ScrollReveal>
             </div>
           </GlassPanel>
         </section>
+
       </div>
     </main>
   );
