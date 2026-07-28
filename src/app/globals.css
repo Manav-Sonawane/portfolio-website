@@ -1,26 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap");
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
+@custom-variant dark (&:is(.dark *));
+
+/* ───────────────────────────────────────────────
+   MAAV_OS — Design Tokens (Phase 1 Foundation)
+─────────────────────────────────────────────── */
 :root {
-  --background: #0f1117;
-  --foreground: #e6e6e6;
-}
+  /* Void — not pure black, a hair of green keeps it feeling like a CRT */
+  --void: #060907;
+  --void-raised: #0b100d;
+  --void-glass: rgba(10, 16, 12, 0.55);
 
-/* @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-} */
+  /* Phosphor scale */
+  --phosphor-100: #d7ffe8;
+  --phosphor-400: #4ade80;
+  --phosphor-600: #16a34a;
+  --phosphor-900: #0d2e1a;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Amber — secondary accent, security/prime-project signaling only */
+  --amber-400: #ffb454;
+  --amber-900: #4a2e0d;
+
+  /* Structural grays — slightly green-shifted */
+  --ghost-400: #8fa596;
+  --ghost-700: #465049;
+
+  /* Glow utilities */
+  --glow-phosphor: 0 0 24px rgba(74, 222, 128, 0.35);
+  --glow-phosphor-tight: 0 0 8px rgba(74, 222, 128, 0.55);
+  --glow-amber: 0 0 20px rgba(255, 180, 84, 0.3);
+
+  /* Typography */
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
+  background-color: var(--void);
+  color: var(--phosphor-100);
+  /* CRT vignette — edges darken like a CRT tube */
+  box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.6);
+}
+
+@theme inline {
+  --font-heading: var(--font-mono);
+  --font-mono: var(--font-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    /* Override shadcn defaults to use our void background */
+    background-color: var(--void) !important;
+    color: var(--phosphor-100) !important;
+  }
+  html {
+    @apply font-mono;
+  }
+}
+
+/* ───────────────────────────────────────────────
+   MAAV_OS — Glass Panel Utility
+─────────────────────────────────────────────── */
+.glass-panel {
+  background: var(--void-glass);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--phosphor-900);
+  border-radius: 6px;
+  box-shadow:
+    inset 0 1px 0 rgba(74, 222, 128, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-panel:hover {
+  border-color: var(--phosphor-600);
+  box-shadow: var(--glow-phosphor), 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+.glass-panel:focus-within {
+  outline: 2px solid var(--phosphor-400);
+  outline-offset: 2px;
+}
+
+/* Amber glass variant — prime/security projects */
+.glass-panel-amber {
+  background: rgba(74, 46, 13, 0.35);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--amber-900);
+  border-radius: 6px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 180, 84, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-panel-amber:hover {
+  border-color: var(--amber-400);
+  box-shadow: var(--glow-amber), 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Terminal cursor blink */
+@keyframes terminal-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.cursor-blink {
+  animation: terminal-blink 0.53s step-end infinite;
+  color: var(--phosphor-400);
+}
+
+/* ───────────────────────────────────────────────
+   MAAV_OS — Accessibility Guardrails
+─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink {
+    animation: none;
+    opacity: 1;
+  }
+  /* CRT and blob overlays are hidden via JS useReducedMotion() hook */
+}
+
+@media (prefers-contrast: more) {
+  /* CRT overlay disabled via JS */
+  body {
+    box-shadow: none;
+  }
 }

@@ -1,19 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/Footer";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import CRTOverlay from "@/components/fx/CRTOverlay";
+import RouteTransition from "@/components/fx/RouteTransition";
+import BootSequence from "@/components/fx/BootSequence";
 
 export const metadata: Metadata = {
   title: {
@@ -60,13 +51,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col antialiased overflow-x-hidden">
+      <body className="min-h-screen flex flex-col antialiased overflow-x-hidden font-mono">
+        {/* Boot animation covering the screen on cold load */}
+        <BootSequence />
+        {/* Persistent CRT scanline + vignette overlay — felt, not seen */}
+        <CRTOverlay />
         <Navbar />
         <div className="flex-1 flex flex-col w-full">
-          {children}
+          <RouteTransition>{children}</RouteTransition>
         </div>
         <Footer />
       </body>
     </html>
   );
 }
+

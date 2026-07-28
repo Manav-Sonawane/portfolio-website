@@ -1,9 +1,10 @@
-/* eslint-disable react/no-unescaped-entities */
 import Image from "next/image";
 import Link from "next/link";
 import StatCard from "@/components/StatCard";
 import { getGitHubStats } from "@/lib/github";
 import { getLeetCodeStats } from "@/lib/leetcode";
+import GlassPanel from "@/components/fx/GlassPanel";
+import MorphBlob from "@/components/fx/MorphBlob";
 
 export default async function Home() {
   const githubData = await getGitHubStats("Manav-Sonawane");
@@ -49,8 +50,9 @@ export default async function Home() {
         </section>
 
         {/* GitHub Stats Panel */}
-        <section className="flex justify-center w-full">
-          <div className="border border-gray-700 rounded-lg p-4 sm:p-6 md:p-6 bg-black/30 space-y-4 md:space-y-4 w-full max-w-2xl">
+        <section className="flex justify-center w-full relative">
+          <MorphBlob tone="phosphor" />
+          <GlassPanel className="p-4 sm:p-6 space-y-4 w-full max-w-2xl">
             <div className="mb-1">
               <p className="text-green-400 text-base sm:text-lg md:text-xl font-medium mb-1 break-words">
                 {">>"} github.com/{githubData.login}
@@ -108,7 +110,7 @@ export default async function Home() {
                 value={`${leetCodeData.easySolved}/${leetCodeData.mediumSolved}/${leetCodeData.hardSolved}`}
               />
             </div>
-          </div>
+          </GlassPanel>
         </section>
       </div>
     </main>
