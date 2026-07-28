@@ -1,7 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import styled from "styled-components";
+import { useRef, useState } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import GlassPanel from "@/components/fx/GlassPanel";
+import Typewriter from "@/components/fx/Typewriter";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type Project = {
   title: string;
@@ -10,404 +14,151 @@ type Project = {
   role: string;
   highlights: string[];
   github: string;
-  live?: string;
+  live?: string | null;
 };
 
-export default function ProjectCard({
-  title,
-  tagline,
-  tech,
-  role,
-  highlights,
-  github,
-  live,
-}: Project) {
+export default function ProjectsCard({ project, isPrime }: { project: Project; isPrime: boolean }) {
+  const container = useRef<HTMLDivElement>(null);
+  const cardFront = useRef<HTMLDivElement>(null);
+  const cardBack = useRef<HTMLDivElement>(null);
+  
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const prefersReduced = useReducedMotion();
 
-  const handleCardClick = () => {
-    setIsFlipped(!isFlipped);
-  };
+  const { contextSafe } = useGSAP({ scope: container });
+
+  const flipCard = contextSafe(() => {
+    const nextState = !isFlipped;
+    setIsFlipped(nextState);
+
+    // Front starts at 0, back starts at 180 (hidden).
+    // When flipping to back: front goes to -180, back goes to 0
+    gsap.to(cardFront.current, {
+      rotateY: nextState ? -180 : 0,
+      duration: prefersReduced ? 0.01 : 0.8,
+      ease: "back.out(1.2)",
+    });
+
+    gsap.to(cardBack.current, {
+      rotateY: nextState ? 0 : 180,
+      duration: prefersReduced ? 0.01 : 0.8,
+      ease: "back.out(1.2)",
+    });
+  });
+
+  useGSAP(() => {
+    gsap.set(container.current, { perspective: 1000 });
+    gsap.set([cardFront.current, cardBack.current], { 
+      backfaceVisibility: "hidden",
+      transformStyle: "preserve-3d"
+    });
+    gsap.set(cardBack.current, { rotateY: 180 });
+  }, { scope: container });
 
   const handleLinkClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 
   return (
-    <StyledWrapper>
-      <div className="card" onClick={handleCardClick}>
-        <div className={`content ${isFlipped ? "flipped" : ""}`}>
-          <div
-            className="back"
-            style={{ pointerEvents: isFlipped ? "none" : "auto" }}
-          >
-            <div className="img">
-              <div className="circle"></div>
-              <div className="circle" id="right"></div>
-              <div className="circle" id="bottom"></div>
+    <div 
+      ref={container} 
+      className={`relative cursor-pointer w-full max-w-sm sm:max-w-md h-[420px] flex-shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[--phosphor-400] focus-visible:ring-offset-2 focus-visible:ring-offset-[--void] rounded-md`} 
+      onClick={flipCard}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          flipCard();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`View details for ${project.title}`}
+    >
+      {/* FRONT OF CARD */}
+      <div ref={cardFront} className="absolute inset-0 w-full h-full">
+        <GlassPanel className="w-full h-full flex flex-col justify-between p-6 overflow-hidden relative group">
+          <div className="absolute inset-0 bg-gradient-to-br from-[--phosphor-400]/5 to-transparent opacity-50 pointer-events-none" />
+          
+          <div>
+            <h3 className={`font-bold ${isPrime ? 'text-3xl text-[--amber-400]' : 'text-2xl text-[--phosphor-400]'}`}>
+              {project.title}
+            </h3>
+            <p className="mt-2 text-[--ghost-400] font-mono text-sm">
+              &gt; {project.role}
+            </p>
+          </div>
+
+          <div className="mt-auto">
+            {/* Live typed tagline on hover */}
+            <div className="h-20 flex items-end mb-5">
+              {isHovered && !isFlipped ? (
+                 <p className="text-[--phosphor-100] text-sm leading-relaxed">
+                   <Typewriter text={project.tagline} speed={30} />
+                 </p>
+              ) : (
+                <p className="text-[--phosphor-100] text-sm leading-relaxed opacity-30">
+                  {/* Placeholder hint before hover */}
+                  Hover to decrypt //
+                </p>
+              )}
             </div>
-            <div className="back-content">
-              <div className="description">
-                <div className="title">
-                  <p className="title">
-                    <strong>{title}</strong>
-                  </p>
-                </div>
-                <ul className="tech-stack">
-                  {tech.map((t, i) => (
-                    <li key={i}>{t}</li>
-                  ))}
-                </ul>
-              </div>
-              <small className="badge mt-5">{role}</small>
-              <div className="mt-auto">
-                <p>{tagline}</p>
-              </div>
+
+            <div className="flex flex-wrap gap-2">
+              {project.tech.map((t, i) => (
+                <span key={i} className={`text-xs font-mono px-2 py-1 rounded border ${isPrime ? 'border-[--amber-900]/50 text-[--amber-400]' : 'border-[--phosphor-900]/50 text-[--phosphor-400]'}`}>
+                  {t}
+                </span>
+              ))}
             </div>
           </div>
-          <div
-            className="front"
-            style={{ pointerEvents: isFlipped ? "auto" : "none" }}
-          >
-            <div className="front-content">
-              <div className="front-header">
-                <strong>What I Built</strong>
-              </div>
-              <div className="highlights">
-                <ul>
-                  {highlights.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="links">
-                <a
-                  href={github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-btn"
-                  onClick={handleLinkClick}
-                >
-                  GitHub →
-                </a>
-                {live && (
-                  <a
-                    href={live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-btn"
-                    onClick={handleLinkClick}
-                  >
-                    Live →
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
+        </GlassPanel>
       </div>
-    </StyledWrapper>
+
+      {/* BACK OF CARD */}
+      <div ref={cardBack} className="absolute inset-0 w-full h-full">
+        <GlassPanel className="w-full h-full flex flex-col p-6 overflow-hidden">
+          <div className="border-b border-[--phosphor-900] pb-3 mb-4">
+            <h4 className="text-[--phosphor-100] font-bold">What I Built</h4>
+          </div>
+          
+          <div className="flex-1 overflow-y-auto pr-2 scrollbar-hide text-sm text-[--ghost-400] space-y-4">
+            {project.highlights.map((item, index) => (
+              <p key={index} className="flex gap-2 leading-relaxed">
+                <span className={isPrime ? 'text-[--amber-400]' : 'text-[--phosphor-400]'}>›</span>
+                <span>{item}</span>
+              </p>
+            ))}
+          </div>
+
+          <div className="flex gap-3 mt-4 pt-4 border-t border-[--phosphor-900]">
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleLinkClick}
+                className="flex-1 text-center py-2 text-xs font-mono border border-[--phosphor-600] text-[--phosphor-400] rounded hover:bg-[--phosphor-600] hover:text-[#000] transition-colors"
+              >
+                [ GitHub ]
+              </a>
+            )}
+            {project.live && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleLinkClick}
+                className="flex-1 text-center py-2 text-xs font-mono border border-[--ghost-700] text-[--ghost-400] rounded hover:border-[--phosphor-400] hover:text-[--phosphor-400] transition-colors"
+              >
+                [ Live ]
+              </a>
+            )}
+          </div>
+        </GlassPanel>
+      </div>
+    </div>
   );
 }
-
-const StyledWrapper = styled.div`
-  .card {
-    overflow: visible;
-    width: 320px;
-    height: 420px;
-    cursor: pointer;
-  }
-
-  .content {
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 300ms;
-    box-shadow: 0px 0px 10px 1px #000000ee;
-    border-radius: 5px;
-  }
-
-  .content.flipped {
-    transform: rotateY(180deg);
-  }
-
-  .front,
-  .back {
-    background-color: #151515;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-
-  .back {
-    background-color: #151515;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border-radius: 5px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .back .img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .back .back-content {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 1;
-  }
-
-  .back .badge {
-    background-color: #22c55e22;
-    padding: 6px 16px;
-    border-radius: 4px;
-    backdrop-filter: blur(2px);
-    width: fit-content;
-    font-size: 12px;
-    color: #22c55e;
-    border: 1px solid #22c55e44;
-  }
-
-  .back .description {
-    box-shadow: 0px 0px 10px 5px #00000088;
-    width: 100%;
-    padding: 16px;
-    background-color: #00000099;
-    backdrop-filter: blur(5px);
-    border-radius: 5px;
-  }
-
-  .back .title {
-    font-size: 24px;
-    max-width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 12px;
-  }
-
-  .back .title p {
-    width: 100%;
-    color: #fff;
-    font-weight: 700;
-  }
-
-  .back .tagline {
-    color: #d1d5db;
-    margin-top: 10px;
-    font-size: 13px;
-    line-height: 1.6;
-  }
-
-  .back .tech-stack {
-    color: #22c55e;
-    margin-top: 12px;
-    font-size: 14px;
-    font-family: monospace;
-    line-height: 1.8;
-    list-style: none;
-    padding: 0;
-  }
-
-  .back .tech-stack li {
-    margin-bottom: 6px;
-    padding-left: 16px;
-    position: relative;
-  }
-
-  .back .tech-stack li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: #22c55e;
-    font-weight: bold;
-    font-size: 16px;
-  }
-
-  .front {
-    background-color: #151515;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border-radius: 5px;
-    overflow: hidden;
-    transform: rotateY(180deg);
-    color: white;
-  }
-
-  .front::before {
-    position: absolute;
-    content: " ";
-    display: block;
-    width: 160px;
-    height: 160%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      #22c55e,
-      #22c55e,
-      #22c55e,
-      #22c55e,
-      transparent
-    );
-    animation: rotation_481 5000ms infinite linear;
-    pointer-events: none;
-  }
-
-  .front .front-content {
-    position: absolute;
-    width: 99%;
-    height: 99%;
-    background-color: #151515;
-    border-radius: 5px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 15px;
-    padding: 20px;
-    z-index: 1;
-  }
-
-  .front-header {
-    font-size: 16px;
-    color: #22c55e;
-    font-weight: 600;
-    border-bottom: 1px solid #22c55e33;
-    width: 100%;
-    padding-bottom: 10px;
-  }
-
-  .highlights {
-    flex: 1;
-    overflow-y: auto;
-    width: 100%;
-  }
-
-  .highlights ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 13px;
-    line-height: 1.6;
-    color: #d1d5db;
-  }
-
-  .highlights li {
-    margin-bottom: 10px;
-    padding-left: 16px;
-    position: relative;
-  }
-
-  .highlights li::before {
-    content: "›";
-    position: absolute;
-    left: 0;
-    color: #22c55e;
-    font-weight: bold;
-  }
-
-  .links {
-    display: flex;
-    gap: 8px;
-    width: 100%;
-    position: relative;
-    z-index: 100;
-  }
-
-  .link-btn {
-    flex: 1;
-    padding: 8px 16px;
-    font-size: 12px;
-    text-align: center;
-    border: 1px solid #22c55e;
-    border-radius: 4px;
-    color: #22c55e;
-    text-decoration: none;
-    transition: all 0.2s;
-    background-color: transparent;
-    cursor: pointer;
-    position: relative;
-    z-index: 10;
-  }
-
-  .link-btn:hover {
-    background-color: #22c55e;
-    color: #151515;
-  }
-
-  @keyframes rotation_481 {
-    0% {
-      transform: rotateZ(0deg);
-    }
-
-    100% {
-      transform: rotateZ(360deg);
-    }
-  }
-
-  .circle {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background-color: #22c55e;
-    position: relative;
-    filter: blur(15px);
-    animation: floating 2600ms infinite linear;
-    opacity: 0.3;
-  }
-
-  #bottom {
-    background-color: #16a34a;
-    left: 50px;
-    top: 0px;
-    width: 150px;
-    height: 150px;
-    animation-delay: -800ms;
-    opacity: 0.2;
-  }
-
-  #right {
-    background-color: #15803d;
-    left: 160px;
-    top: -80px;
-    width: 30px;
-    height: 30px;
-    animation-delay: -1800ms;
-    opacity: 0.4;
-  }
-
-  @keyframes floating {
-    0% {
-      transform: translateY(0px);
-    }
-
-    50% {
-      transform: translateY(10px);
-    }
-
-    100% {
-      transform: translateY(0px);
-    }
-  }
-`;

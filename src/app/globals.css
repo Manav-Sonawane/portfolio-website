@@ -210,6 +210,10 @@ body {
   border-color: var(--amber-400);
   box-shadow: var(--glow-amber), 0 8px 32px rgba(0, 0, 0, 0.4);
 }
+.glass-panel-amber:focus-within {
+  outline: 2px solid var(--amber-400);
+  outline-offset: 2px;
+}
 
 /* Terminal cursor blink */
 @keyframes terminal-blink {

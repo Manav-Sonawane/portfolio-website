@@ -41,4 +41,17 @@ export const projects = [
     github: "https://github.com/Manav-Sonawane/CodeRed.io",
     live: "https://codered-io.onrender.com",
   },
+  {
+    slug: "BookMySeat",
+    title: "BookMySeat",
+    tagline: "Movie ticket booking platform like BookMyShow",
+    tech: ["Django", "Python", "SQLite"],
+    role: "Full-Stack Developer",
+    highlights: [
+      "Implemented concurrency control, session caching, authentication, payment gateway integration and email confirmations.",
+      "Built an admin panel with analytics dashboards and movie management features."
+    ],
+    github: "https://github.com/Manav-Sonawane/BookMySeat",
+    live: null,
+  }
 ];
