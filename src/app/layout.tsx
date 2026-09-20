@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/Footer";
-import CRTOverlay from "@/components/fx/CRTOverlay";
-import RouteTransition from "@/components/fx/RouteTransition";
-import BootSequence from "@/components/fx/BootSequence";
-import CursorGlow from "@/components/fx/CursorGlow";
+import SmoothScroll from "@/components/fx/SmoothScroll";
+import Backdrop from "@/components/fx/Backdrop";
+import Cursor from "@/components/fx/Cursor";
+import Preloader from "@/components/fx/Preloader";
+import PageTransition from "@/components/fx/PageTransition";
 
 export const metadata: Metadata = {
   title: {
@@ -46,27 +47,40 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#06060a",
+  colorScheme: "dark",
+};
+
+// Runs before first paint: flag first-visit sessions so the preloader shows with no flash
+const PRELOAD_GATE = `try{if(!sessionStorage.getItem("booted"))document.documentElement.classList.add("preloading")}catch(e){}`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="min-h-screen flex flex-col antialiased overflow-x-hidden font-mono">
-        {/* Custom cursor glowing phosphor dot snapping to brackets [ ] */}
-        <CursorGlow />
-        {/* Boot animation covering the screen on cold load */}
-        <BootSequence />
-        {/* Persistent CRT scanline + vignette overlay — felt, not seen */}
-        <CRTOverlay />
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: PRELOAD_GATE }} />
+        <noscript>
+          <style>{`.reveal-init{opacity:1!important}.split-init{visibility:visible!important}.preloader{display:none!important}`}</style>
+        </noscript>
+      </head>
+      <body className="antialiased">
+        <SmoothScroll />
+        <Backdrop />
+        <div className="grain" aria-hidden />
+        <Cursor />
+        <Preloader />
+        <PageTransition />
         <Navbar />
-        <div className="flex-1 flex flex-col w-full">
-          <RouteTransition>{children}</RouteTransition>
+        <div className="relative flex min-h-screen flex-col">
+          <div className="flex flex-1 flex-col">{children}</div>
+          <Footer />
         </div>
-        <Footer />
       </body>
     </html>
   );
 }
-

@@ -1,35 +1,20 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
-/**
- * MAAV_OS — useReducedMotion
- * Reads prefers-reduced-motion and prefers-contrast media queries.
- * All GSAP animation components branch on this.
- */
-export function useReducedMotion(): boolean {
-  const [reduced, setReduced] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setReduced(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-
-  return reduced;
+/** Subscribe to a media query as an external store (SSR snapshot is always false). */
+function makeMediaHook(query: string) {
+  const subscribe = (onChange: () => void) => {
+    const mq = window.matchMedia(query);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  };
+  const getSnapshot = () => window.matchMedia(query).matches;
+  const getServerSnapshot = () => false;
+  return () => useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }
 
-export function useHighContrast(): boolean {
-  const [highContrast, setHighContrast] = useState(false);
+/** prefers-reduced-motion: reduce — every GSAP component branches on this. */
+export const useReducedMotion = makeMediaHook("(prefers-reduced-motion: reduce)");
 
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-contrast: more)");
-    setHighContrast(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setHighContrast(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-
-  return highContrast;
-}
+/** prefers-contrast: more */
+export const useHighContrast = makeMediaHook("(prefers-contrast: more)");

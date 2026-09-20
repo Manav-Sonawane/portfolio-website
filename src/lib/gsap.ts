@@ -1,14 +1,14 @@
 /**
- * MAAV_OS — GSAP plugin registration
- * Import this file once at the app root (layout.tsx or a client wrapper).
- * All other files import from here so plugins are never registered twice.
+ * GSAP plugin registration — import gsap & friends from here, never from "gsap"
+ * directly, so plugins are registered exactly once.
  */
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger, useGSAP);
+  gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
 }
 
-export { gsap, ScrollTrigger, useGSAP };
+export { gsap, ScrollTrigger, SplitText, useGSAP };

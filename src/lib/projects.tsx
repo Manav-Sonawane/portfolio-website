@@ -1,8 +1,24 @@
-export const projects = [
+export interface Project {
+  slug: string;
+  title: string;
+  tagline: string;
+  category: string;
+  accent: string;
+  tech: string[];
+  role: string;
+  highlights: string[];
+  github: string;
+  live: string | null;
+  featured?: boolean;
+}
+
+export const projects: Project[] = [
   {
     slug: "Citioyen",
     title: "Citioyen",
     tagline: "AI-powered civic issue reporting platform",
+    category: "AI · Full-stack",
+    accent: "#7c6cff",
     tech: ["React 19", "Express 5", "TypeScript", "PostgreSQL", "Gemini API", "Docker", "GCP"],
     role: "Full-Stack Developer",
     highlights: [
@@ -11,11 +27,29 @@ export const projects = [
     ],
     github: "https://github.com/Manav-Sonawane/citioyen",
     live: null,
+    featured: true,
+  },
+  {
+    slug: "SeaSarathi",
+    title: "SeaSarathi",
+    tagline: "Agentic AI fishing advisory for Indian coastal fishermen",
+    category: "Agentic AI",
+    accent: "#2ee6c5",
+    tech: ["FastAPI", "LangGraph", "Claude 3.5 Sonnet", "GeoPandas"],
+    role: "Full-Stack Developer",
+    highlights: [
+      "Built an agentic AI fishing-advisory app for Indian coastal fishermen, orchestrating safety and fishing-zone recommendations via LangGraph and Claude 3.5 Sonnet over live and historical marine data.",
+    ],
+    github: "https://github.com/Manav-Sonawane/SeaSarathi",
+    live: null,
+    featured: true,
   },
   {
     slug: "MAArK",
     title: "MAArK",
-    tagline: "Privacy-First Search Engine and Browser",
+    tagline: "Privacy-first search engine and desktop browser",
+    category: "Security · Desktop",
+    accent: "#ffb454",
     tech: ["Java", "Maven", "JavaFX", "Electron IPC"],
     role: "Backend Developer",
     highlights: [
@@ -25,11 +59,14 @@ export const projects = [
     ],
     github: "https://github.com/Manav-Sonawane/MAArK",
     live: null,
+    featured: true,
   },
   {
     slug: "Codered-IO",
     title: "Codered IO",
-    tagline: "Browser-based arcade platform with 2D and 3D games",
+    tagline: "Browser arcade with four 2D and 3D multiplayer games",
+    category: "Real-time · Games",
+    accent: "#ff6b9a",
     tech: ["React", "Three.js", "Socket.io", "Express.js", "MongoDB"],
     role: "Full-Stack Developer",
     highlights: [
@@ -41,21 +78,11 @@ export const projects = [
     live: "https://codered-io.onrender.com",
   },
   {
-    slug: "SeaSarathi",
-    title: "SeaSarathi",
-    tagline: "Marine intelligence platform — agentic AI fishing advisory for Indian coastal fishermen (FastAPI, LangGraph, Claude 3.5 Sonnet)",
-    tech: ["FastAPI", "LangGraph", "Claude 3.5 Sonnet", "GeoPandas"],
-    role: "Full-Stack Developer",
-    highlights: [
-      "Built an agentic AI fishing-advisory app for Indian coastal fishermen, orchestrating safety and fishing-zone recommendations via LangGraph and Claude 3.5 Sonnet over live and historical marine data.",
-    ],
-    github: "https://github.com/Manav-Sonawane/SeaSarathi",
-    live: null,
-  },
-  {
     slug: "PlayStation-UI-Revamp",
     title: "PlayStation UI Revamp",
-    tagline: "Social-first gaming dashboard built in a 5-hour hackathon sprint — MockUp'26, Top 8 (Team CodeSI)",
+    tagline: "Social-first gaming dashboard — MockUp'26 Top 8",
+    category: "Frontend · Hackathon",
+    accent: "#4d8dff",
     tech: ["React", "Vite", "Tailwind CSS", "Framer Motion", "GSAP"],
     role: "Frontend Developer",
     highlights: [
@@ -67,7 +94,9 @@ export const projects = [
   {
     slug: "CareerForge-AI",
     title: "CareerForge AI",
-    tagline: "NLP-based resume analyzer (PyTesseract OCR + Gemini API) for skill-gap analysis and career recommendations",
+    tagline: "NLP resume analyzer for skill-gap analysis",
+    category: "NLP · Backend",
+    accent: "#c6ff4d",
     tech: ["Python", "Flask", "Gemini API", "NLP"],
     role: "Full-Stack Developer",
     highlights: [
@@ -79,7 +108,9 @@ export const projects = [
   {
     slug: "BookMySeat",
     title: "BookMySeat",
-    tagline: "Movie ticket booking platform like BookMyShow",
+    tagline: "Concurrency-safe movie ticket booking platform",
+    category: "Backend · Full-stack",
+    accent: "#ff8a4c",
     tech: ["Django", "Python", "PostgreSQL", "Redis"],
     role: "Full-Stack Developer",
     highlights: [

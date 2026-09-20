@@ -1,53 +1,54 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
-/* ───────────────────────────────────────────────
-   MAAV_OS — Design Tokens (Phase 1 Foundation)
-─────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════
+   MANAV.DEV — "Terminal Luxe" design system
+   Ink canvas · aurora mesh · warm paper type · lime signal
+═══════════════════════════════════════════════════════════ */
 :root {
-  /* Void — not pure black, a hair of green keeps it feeling like a CRT */
-  --void: #060907;
-  --void-raised: #0b100d;
-  --void-glass: rgba(10, 16, 12, 0.55);
+  --ink: #06060a;
+  --ink-2: #0c0c13;
+  --ink-3: #14141e;
+  --paper: #f1eee6;
+  --mute: #9a9aa8;
+  --dim: #5b5b69;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.2);
 
-  /* Phosphor scale */
-  --phosphor-100: #d7ffe8;
-  --phosphor-400: #4ade80;
-  --phosphor-600: #16a34a;
-  --phosphor-900: #0d2e1a;
+  /* Signal — the terminal's phosphor, evolved into acid lime */
+  --signal: #c6ff4d;
+  --violet: #7c6cff;
+  --teal: #2ee6c5;
+  --amber: #ffb454;
+  --rose: #ff6b9a;
 
-  /* Amber — secondary accent, security/prime-project signaling only */
-  --amber-400: #ffb454;
-  --amber-900: #4a2e0d;
-
-  /* Structural grays — slightly green-shifted */
-  --ghost-400: #8fa596;
-  --ghost-700: #465049;
-
-  /* Glow utilities */
-  --glow-phosphor: 0 0 24px rgba(74, 222, 128, 0.35);
-  --glow-phosphor-tight: 0 0 8px rgba(74, 222, 128, 0.55);
-  --glow-amber: 0 0 20px rgba(255, 180, 84, 0.3);
-
-  /* Typography */
+  --font-display: "Instrument Serif", "Times New Roman", serif;
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
-}
-
-body {
-  font-family: var(--font-mono);
-  background-color: var(--void);
-  color: var(--phosphor-100);
-  /* CRT vignette — edges darken like a CRT tube */
-  box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.6);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {
-  --font-heading: var(--font-mono);
-  --font-mono: var(--font-mono);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-paper: var(--paper);
+  --color-mute: var(--mute);
+  --color-dim: var(--dim);
+  --color-line: var(--line);
+  --color-signal: var(--signal);
+  --color-violet: var(--violet);
+  --color-teal: var(--teal);
+  --color-amber: var(--amber);
+  --color-rose: var(--rose);
+  --font-display: "Instrument Serif", "Times New Roman", serif;
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-heading: var(--font-display);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -88,6 +89,7 @@ body {
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* shadcn variables (kept so ui/button.tsx keeps working) */
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -123,122 +125,187 @@ body {
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+/* ── Base ─────────────────────────────────────────────── */
+html {
+  background: var(--ink);
+  color-scheme: dark;
+}
+body {
+  /* transparent on purpose: html paints the ink canvas, so the fixed backdrop (z -1) shows through */
+  background: transparent;
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+::selection { background: var(--signal); color: #0a0a0a; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.14); border-radius: 8px; }
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* Custom cursor: hide native only when ours is running */
+html.has-cursor, html.has-cursor a, html.has-cursor button,
+html.has-cursor [role="button"], html.has-cursor input, html.has-cursor textarea { cursor: none; }
+
+/* Preloader gate — class is set by an inline script before first paint */
+.preloader { display: none; }
+html.preloading .preloader { display: flex; }
+html.preloading { overflow: hidden; }
+
+/* Initial (pre-animation) states — noscript resets in layout head */
+.reveal-init { opacity: 0; }
+.split-init { visibility: hidden; }
+
+/* Component classes live in the components layer so Tailwind utilities can override them */
+@layer components {
+/* ── Type ─────────────────────────────────────────────── */
+.font-display { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em; }
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.display-xl {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3rem, 8.4vw, 9rem);
+  line-height: 0.94;
+  letter-spacing: -0.022em;
+}
+.display-lg {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 6.4vw, 6.4rem);
+  line-height: 0.97;
+  letter-spacing: -0.018em;
+}
+.display-md {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 3.8vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.display-xl em, .display-lg em, .display-md em, .accent-em em {
+  font-style: italic;
+  color: var(--signal);
+  padding-right: 0.06em;
+}
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(241, 238, 230, 0.34);
+}
+.prose-lead { font-size: clamp(1.05rem, 1.35vw, 1.3rem); line-height: 1.6; color: var(--mute); }
+
+/* ── Glass with cursor-tracked spotlight ─────────────── */
+.glass {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.018));
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 30px 80px -30px rgba(0, 0, 0, 0.7);
+  transition: border-color 0.5s var(--ease-expo), transform 0.6s var(--ease-expo);
+}
+.glass::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgba(198, 255, 77, 0.09), transparent 42%);
+  opacity: 0; transition: opacity 0.5s; pointer-events: none;
+}
+.glass::after {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit; padding: 1px;
+  background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(198, 255, 77, 0.6), transparent 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0; transition: opacity 0.5s; pointer-events: none;
+}
+.glass:hover::before, .glass:hover::after { opacity: 1; }
+.glass-static::before, .glass-static::after { display: none; }
+
+/* ── Buttons ──────────────────────────────────────────── */
+.btn {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  padding: 0.95rem 1.55rem; border-radius: 999px;
+  font-family: var(--font-mono); font-size: 0.76rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
+  transition: color 0.5s var(--ease-expo), border-color 0.5s;
+}
+.btn::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  transform: translateY(102%); transition: transform 0.6s var(--ease-expo);
+}
+.btn:hover::before { transform: translateY(0); }
+.btn .arrow { transition: transform 0.5s var(--ease-expo); }
+.btn:hover .arrow { transform: translate(3px, -3px); }
+.btn-primary { background: var(--signal); color: #0a0a0a; }
+.btn-primary::before { background: var(--paper); }
+.btn-ghost { border: 1px solid var(--line-strong); color: var(--paper); }
+.btn-ghost::before { background: var(--paper); }
+.btn-ghost:hover { color: #0a0a0a; border-color: var(--paper); }
+.btn-sm { padding: 0.6rem 1.1rem; font-size: 0.7rem; }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.35rem 0.8rem; border-radius: 999px;
+  border: 1px solid var(--line); background: rgba(255, 255, 255, 0.03);
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.04em; color: var(--mute);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    /* Override shadcn defaults to use our void background */
-    background-color: var(--void) !important;
-    color: var(--phosphor-100) !important;
-  }
-  html {
-    @apply font-mono;
-  }
+/* Link underline that draws in */
+.u-link { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size 0.6s var(--ease-expo); }
+.u-link:hover { background-size: 100% 1px; }
 }
 
-/* ───────────────────────────────────────────────
-   MAAV_OS — Glass Panel Utility
-─────────────────────────────────────────────── */
-.glass-panel {
-  background: var(--void-glass);
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
-  border: 1px solid var(--phosphor-900);
-  border-radius: 6px;
-  box-shadow:
-    inset 0 1px 0 rgba(74, 222, 128, 0.08),
-    0 8px 32px rgba(0, 0, 0, 0.4);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+/* Film grain — the "expensive" texture */
+.grain {
+  position: fixed; inset: -50%; width: 200%; height: 200%;
+  pointer-events: none; z-index: 990; opacity: 0.075;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain 0.9s steps(6) infinite;
 }
-.glass-panel:hover {
-  border-color: var(--phosphor-600);
-  box-shadow: var(--glow-phosphor), 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-.glass-panel:focus-within {
-  outline: 2px solid var(--phosphor-400);
-  outline-offset: 2px;
+@keyframes grain {
+  0% { transform: translate(0, 0); } 20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -3%); } 60% { transform: translate(-2%, -1%); }
+  80% { transform: translate(3%, 3%); } 100% { transform: translate(0, 0); }
 }
 
-/* Amber glass variant — prime/security projects */
-.glass-panel-amber {
-  background: rgba(74, 46, 13, 0.35);
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
-  border: 1px solid var(--amber-900);
-  border-radius: 6px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 180, 84, 0.08),
-    0 8px 32px rgba(0, 0, 0, 0.4);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.glass-panel-amber:hover {
-  border-color: var(--amber-400);
-  box-shadow: var(--glow-amber), 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-.glass-panel-amber:focus-within {
-  outline: 2px solid var(--amber-400);
-  outline-offset: 2px;
-}
+/* Terminal cursor blink — the one CRT heirloom we kept */
+@keyframes terminal-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+.cursor-blink { animation: terminal-blink 1.05s step-end infinite; color: var(--signal); }
 
-/* Terminal cursor blink */
-@keyframes terminal-blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-.cursor-blink {
-  animation: terminal-blink 0.53s step-end infinite;
-  color: var(--phosphor-400);
-}
+@keyframes ping-soft { 0% { transform: scale(1); opacity: 0.7; } 80%, 100% { transform: scale(2.6); opacity: 0; } }
+.live-dot { position: relative; width: 8px; height: 8px; border-radius: 999px; background: var(--signal); flex: none; }
+.live-dot::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--signal); animation: ping-soft 2s ease-out infinite; }
 
-/* ───────────────────────────────────────────────
-   MAAV_OS — Accessibility Guardrails
-─────────────────────────────────────────────── */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 22s linear infinite; }
+
+/* ── Accessibility ────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .cursor-blink {
-    animation: none;
-    opacity: 1;
-  }
-  /* CRT and blob overlays are hidden via JS useReducedMotion() hook */
+  .grain, .cursor-blink, .live-dot::after, .spin-slow { animation: none; }
+  .reveal-init { opacity: 1; }
+  .split-init { visibility: visible; }
 }
-
 @media (prefers-contrast: more) {
-  /* CRT overlay disabled via JS */
-  body {
-    box-shadow: none;
-  }
+  .grain { display: none; }
+  .glass { background: rgba(255, 255, 255, 0.08); }
 }

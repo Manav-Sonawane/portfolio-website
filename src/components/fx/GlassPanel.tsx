@@ -1,38 +1,24 @@
-import { cn } from "@/lib/utils";
+"use client";
+
 import React from "react";
+import { cn } from "@/lib/utils";
 
 interface GlassPanelProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Use amber variant for prime/security projects */
-  variant?: "phosphor" | "amber";
-  /** Disable hover glow (e.g. for static display panels) */
+  /** Disable the pointer spotlight (static display panels) */
   noHover?: boolean;
 }
 
-/**
- * MAAV_OS — GlassPanel
- * Frosted glass container — replaces all flat bg-[#151515] cards.
- * Applies .glass-panel or .glass-panel-amber CSS class from globals.css.
- *
- * Usage:
- *   <GlassPanel>…</GlassPanel>
- *   <GlassPanel variant="amber">…</GlassPanel>
- */
-export default function GlassPanel({
-  variant = "phosphor",
-  noHover = false,
-  className,
-  children,
-  ...props
-}: GlassPanelProps) {
+/** Frosted glass surface whose border and fill light up around the pointer. */
+export default function GlassPanel({ noHover = false, className, children, onMouseMove, ...props }: GlassPanelProps) {
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+    onMouseMove?.(e);
+  };
+
   return (
-    <div
-      className={cn(
-        variant === "amber" ? "glass-panel-amber" : "glass-panel",
-        noHover && "hover:border-inherit hover:shadow-none",
-        className,
-      )}
-      {...props}
-    >
+    <div className={cn("glass", noHover && "glass-static", className)} onMouseMove={handleMove} {...props}>
       {children}
     </div>
   );

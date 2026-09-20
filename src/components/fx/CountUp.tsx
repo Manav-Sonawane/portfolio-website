@@ -1,57 +1,46 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { EASE, safeDuration } from "@/lib/motion-tokens";
 
 interface CountUpProps {
   target: number;
   duration?: number;
+  decimals?: number;
   className?: string;
   prefix?: string;
   suffix?: string;
 }
 
-export default function CountUp({
-  target,
-  duration = 1.2,
-  className,
-  prefix = "",
-  suffix = "",
-}: CountUpProps) {
+/** Tabular-number counter that writes straight to the DOM (no per-frame React renders). */
+export default function CountUp({ target, duration = 1.8, decimals = 0, className, prefix = "", suffix = "" }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [val, setVal] = useState(0);
-  const prefersReduced = useReducedMotion();
+  const reduced = useReducedMotion();
+  const fmt = (v: number) => `${prefix}${v.toFixed(decimals)}${suffix}`;
 
-  useGSAP(() => {
-    if (prefersReduced) {
-      setVal(target);
-      return;
-    }
-
-    const obj = { value: 0 };
-    gsap.to(obj, {
-      value: target,
-      duration: safeDuration(duration, prefersReduced),
-      ease: EASE.reveal,
-      scrollTrigger: {
-        trigger: ref.current,
-        start: "top 95%",
-        once: true,
-      },
-      onUpdate: () => {
-        setVal(Math.floor(obj.value));
-      },
-    });
-  }, [target, duration, prefersReduced]);
+  useGSAP(
+    () => {
+      const el = ref.current;
+      if (!el || reduced) return;
+      const o = { v: 0 };
+      el.textContent = fmt(0);
+      gsap.to(o, {
+        v: target,
+        duration,
+        ease: "power3.out",
+        scrollTrigger: { trigger: el, start: "top 94%", once: true },
+        onUpdate: () => {
+          el.textContent = fmt(o.v);
+        },
+      });
+    },
+    { dependencies: [target, reduced] }
+  );
 
   return (
     <span ref={ref} className={className} style={{ fontVariantNumeric: "tabular-nums" }}>
-      {prefix}
-      {val}
-      {suffix}
+      {fmt(target)}
     </span>
   );
 }

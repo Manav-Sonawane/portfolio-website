@@ -1,125 +1,148 @@
 "use client";
 
-import ProjectsCard from "@/components/ProjectsCard";
-import { projects } from "@/lib/projects";
-import PixelDecrypt from "@/components/fx/PixelDecrypt";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, GithubLogo, Plus } from "@phosphor-icons/react";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
+import SplitReveal from "@/components/fx/SplitReveal";
 import ScrollReveal from "@/components/fx/ScrollReveal";
-import MorphBlob from "@/components/fx/MorphBlob";
-import GlassPanel from "@/components/fx/GlassPanel";
-import Link from "next/link";
+import BigCTA from "@/components/BigCTA";
+import { projects, type Project } from "@/lib/projects";
 
-const PRIME_SLUGS = ["Citioyen", "MAArK"];
-const STANDARD_SLUGS = ["Codered-IO"];
+function Row({ p, index, open, onToggle }: { p: Project; index: number; open: boolean; onToggle: () => void }) {
+  const panel = useRef<HTMLDivElement>(null);
+  const first = useRef(true);
+  // Frozen at mount: after this, GSAP owns the panel height (React must never re-apply it)
+  const [initialHeight] = useState(open ? "auto" : 0);
 
-export default function Projects() {
-  const primeProjects = projects.filter((p) => PRIME_SLUGS.includes(p.slug));
-  const standardProjects = projects.filter((p) => STANDARD_SLUGS.includes(p.slug));
-  const otherProjects = projects.filter((p) => !PRIME_SLUGS.includes(p.slug) && !STANDARD_SLUGS.includes(p.slug));
+  useEffect(() => {
+    if (first.current) {
+      first.current = false;
+      return;
+    }
+    const el = panel.current;
+    if (!el) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    gsap.to(el, {
+      height: open ? "auto" : 0,
+      duration: reduce ? 0 : 0.9,
+      ease: "expo.inOut",
+      onComplete: () => ScrollTrigger.refresh(),
+    });
+    if (open && !reduce) {
+      gsap.fromTo(el.querySelectorAll("[data-in]"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.9, ease: "expo.out", stagger: 0.07, delay: 0.25 });
+    }
+  }, [open]);
 
   return (
-    <main className="flex-1 px-4 sm:px-6 md:px-10 py-6 flex flex-col justify-center w-full">
-      <section className="max-w-full mx-auto w-full">
-        <ScrollReveal delay={0}>
-          <p className="text-[--phosphor-600] mb-2 text-sm font-mono">
-            manav-sonawane@portfolio:~/projects$
-          </p>
-        </ScrollReveal>
+    <div className="group/row relative border-b border-white/10" style={{ ["--accent" as string]: p.accent }}>
+      {/* hover wash */}
+      <div
+        className="pointer-events-none absolute inset-0 origin-left scale-x-0 opacity-0 transition-all duration-700 group-hover/row:scale-x-100 group-hover/row:opacity-100"
+        style={{ background: `linear-gradient(90deg, ${p.accent}18, transparent 70%)`, transitionTimingFunction: "var(--ease-expo)" }}
+      />
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        data-cursor={open ? "close" : "open"}
+        className="relative grid w-full grid-cols-[auto_1fr_auto] items-center gap-x-5 py-7 text-left sm:gap-x-8 md:grid-cols-[4rem_1.4fr_1fr_auto_auto] md:py-9"
+      >
+        <span className="font-mono text-xs text-dim">{String(index + 1).padStart(2, "0")}</span>
+        <span className="display-md transition-transform duration-700 group-hover/row:translate-x-3" style={{ transitionTimingFunction: "var(--ease-expo)" }}>
+          {p.title}
+        </span>
+        <span className="hidden text-mute md:block">{p.tagline}</span>
+        <span className="chip hidden lg:inline-flex" style={{ color: p.accent, borderColor: `${p.accent}44` }}>
+          {p.category}
+        </span>
+        <span
+          className="grid h-11 w-11 place-items-center rounded-full border border-white/15 transition-all duration-500 group-hover/row:border-[var(--accent)]"
+          style={{ transform: open ? "rotate(45deg)" : "none", background: open ? p.accent : "transparent", color: open ? "#000" : "inherit" }}
+        >
+          <Plus size={18} weight="light" />
+        </span>
+      </button>
 
-        <ScrollReveal delay={0.05}>
-          <h2 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <PixelDecrypt text="Projects" />
-          </h2>
-        </ScrollReveal>
-
-        {/* Prime projects and Standard projects — cards */}
-        <div className="md:overflow-x-auto scrollbar-hide mb-8">
-          <div
-            className="flex flex-col md:flex-row gap-5 md:gap-8 pb-4 items-center md:items-start"
-            style={{ minWidth: "auto" }}
-          >
-            {/* Prime projects */}
-            {primeProjects.map((project, i) => (
-              <ScrollReveal 
-                key={project.slug} 
-                delay={0.1 + i * 0.12} 
-                className="relative w-full max-w-[320px] sm:max-w-[380px] shrink-0"
-              >
-                <MorphBlob tone="amber" />
-                <ProjectsCard project={project} isPrime={true} />
-              </ScrollReveal>
-            ))}
-
-            {/* Standard projects */}
-            {standardProjects.map((project, i) => (
-              <ScrollReveal 
-                key={project.slug} 
-                delay={0.22 + i * 0.08} 
-                className="relative w-full max-w-[320px] sm:max-w-[380px] shrink-0"
-              >
-                <MorphBlob tone="phosphor" />
-                <ProjectsCard project={project} isPrime={false} />
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-
-        <ScrollReveal delay={0.4}>
-          <p className="pb-4 text-sm text-[--ghost-400] font-mono">
-            {"(Click the cards to flip and get project details...)"}
-          </p>
-        </ScrollReveal>
-
-        {/* Other / compressed projects list */}
-        {otherProjects.length > 0 && (
-          <div className="mt-8 pt-6 border-t border-[--phosphor-900]">
-            <ScrollReveal delay={0.5}>
-              <h3 className="text-[--phosphor-400] text-sm font-mono tracking-widest uppercase mb-4">
-                // Other Projects
-              </h3>
-            </ScrollReveal>
-            <div className="flex flex-col gap-3">
-              {otherProjects.map((project, i) => (
-                <ScrollReveal key={project.slug} delay={0.6 + i * 0.05}>
-                  <GlassPanel className="p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-                    <div>
-                      <h4 className="text-[--phosphor-100] font-bold text-lg mb-1">{project.title}</h4>
-                      <p className="text-[--ghost-400] text-sm">{project.tagline}</p>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs font-mono border border-[--phosphor-600] text-[--phosphor-400] px-3 py-1.5 rounded hover:bg-[--phosphor-600] hover:text-[#000] transition-colors"
-                        >
-                          [ GitHub → ]
-                        </a>
-                      )}
-                      {project.live && (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs font-mono border border-[--ghost-700] text-[--ghost-400] px-3 py-1.5 rounded hover:border-[--phosphor-400] hover:text-[--phosphor-400] transition-colors"
-                        >
-                          [ Live → ]
-                        </a>
-                      )}
-                    </div>
-                  </GlassPanel>
-                </ScrollReveal>
+      <div ref={panel} className="relative overflow-hidden" style={{ height: initialHeight }}>
+        <div className="grid gap-10 pb-12 pt-2 md:grid-cols-[4rem_1fr] md:gap-x-8">
+          <span className="hidden md:block" />
+          <div className="grid gap-10 lg:grid-cols-12">
+            <div className="space-y-5 lg:col-span-7">
+              <p data-in className="text-mute md:hidden">
+                {p.tagline}
+              </p>
+              {p.highlights.map((h, i) => (
+                <p key={i} data-in className="flex gap-4 text-lg leading-relaxed text-paper/90">
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: p.accent }} />
+                  {h}
+                </p>
               ))}
             </div>
+            <div className="space-y-6 lg:col-span-5">
+              <div data-in>
+                <p className="label mb-3">Role</p>
+                <p className="font-display text-2xl">{p.role}</p>
+              </div>
+              <div data-in>
+                <p className="label mb-3">Stack</p>
+                <ul className="flex flex-wrap gap-2">
+                  {p.tech.map((t) => (
+                    <li key={t} className="chip">
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div data-in className="flex flex-wrap gap-3 pt-2">
+                <a href={p.github} target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-sm">
+                  <GithubLogo size={15} weight="bold" /> Source
+                </a>
+                {p.live && (
+                  <a href={p.live} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm">
+                    Live demo <ArrowUpRight size={14} weight="bold" className="arrow" />
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
-        )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
+export default function Projects() {
+  const [openSlug, setOpenSlug] = useState<string | null>(projects[0].slug);
+
+  return (
+    <main className="flex-1">
+      <section className="mx-auto max-w-[1400px] px-6 pb-16 pt-36 sm:px-10 md:pt-44">
+        <ScrollReveal intro y={14}>
+          <p className="label mb-8">~/projects</p>
+        </ScrollReveal>
+        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+          <SplitReveal as="h1" intro className="display-xl max-w-[10ch]">
+            Selected <em>work.</em>
+          </SplitReveal>
+          <ScrollReveal intro delay={0.4}>
+            <p className="prose-lead max-w-sm">
+              {projects.length} projects — AI agents, real-time systems, hackathon sprints. Open any row for the story and the stack.
+            </p>
+          </ScrollReveal>
+        </div>
       </section>
 
-      <style jsx global>{`
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-      `}</style>
+      <section className="mx-auto max-w-[1400px] px-6 py-10 sm:px-10">
+        <ScrollReveal>
+          <div className="border-t border-white/10">
+            {projects.map((p, i) => (
+              <Row key={p.slug} p={p} index={i} open={openSlug === p.slug} onToggle={() => setOpenSlug((s) => (s === p.slug ? null : p.slug))} />
+            ))}
+          </div>
+        </ScrollReveal>
+      </section>
+
+      <BigCTA />
     </main>
   );
 }
