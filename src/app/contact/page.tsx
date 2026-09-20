@@ -6,7 +6,7 @@ import Typewriter from "@/components/fx/Typewriter";
 import PixelDecrypt from "@/components/fx/PixelDecrypt";
 
 const contacts = [
-  { label: "Email", value: "manavsonawane@zohomail.in", link: "mailto:manavsonawane@zohomail.in" },
+  { label: "Email", value: "sonawanemanav96@gmail.com", link: "mailto:sonawanemanav96@gmail.com" },
   { label: "GitHub", value: "github.com/Manav-Sonawane", link: "https://github.com/Manav-Sonawane" },
   { label: "LinkedIn", value: "linkedin.com/in/manav-sonawane", link: "https://linkedin.com/in/manav-sonawane" },
   { label: "LeetCode", value: "leetcode.com/Manav_Sonawane", link: "https://leetcode.com/Manav_Sonawane" },

@@ -9,11 +9,11 @@ import CursorGlow from "@/components/fx/CursorGlow";
 
 export const metadata: Metadata = {
   title: {
-    default: "Manav Sonawane | Backend & Full-Stack Developer",
+    default: "Manav Sonawane | Full-Stack Developer & AI Builder",
     template: "%s | Manav Sonawane",
   },
   description:
-    "Backend & Full-Stack Developer building scalable web applications, APIs, and production-ready systems. Experience with Django, FastAPI, Node.js, and system design.",
+    "Full-Stack Developer & AI Builder building scalable web applications, APIs, and LLM-powered systems. Experience with Python, Java, TypeScript, Django, FastAPI, Node.js, LangGraph, and Google Cloud.",
   keywords: [
     "Manav Sonawane",
     "Backend Developer",
@@ -21,15 +21,16 @@ export const metadata: Metadata = {
     "Django Developer",
     "FastAPI Developer",
     "Node.js Developer",
+    "AI Developer",
     "Software Engineer Portfolio",
   ],
   authors: [{ name: "Manav Sonawane" }],
   creator: "Manav Sonawane",
   metadataBase: new URL("https://manav-sonawane.me"),
   openGraph: {
-    title: "Manav Sonawane | Backend & Full-Stack Developer",
+    title: "Manav Sonawane | Full-Stack Developer & AI Builder",
     description:
-      "Portfolio of Manav Sonawane — Backend & Full-Stack Developer experienced in scalable systems, APIs, and real-world projects.",
+      "Portfolio of Manav Sonawane — Full-Stack Developer & AI Builder experienced in scalable systems, APIs, LLM agents, and real-world projects.",
     url: "https://manav-sonawane.me",
     siteName: "Manav Sonawane Portfolio",
     images: [

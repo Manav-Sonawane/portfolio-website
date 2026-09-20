@@ -33,19 +33,19 @@ export default function About() {
 
           <ScrollReveal delay={0.25}>
             <p className="text-[--ghost-400] text-base sm:text-lg leading-relaxed mb-4 font-mono">
-              I specialize in backend engineering and full-stack development, with hands-on experience building highly concurrent web systems (such as BookMySeat with Django) and leading engineering teams during my internships at ElevanceSkills Technologies and ESPECA Technologies.
+              I am a full-stack developer and AI builder, seeking hackathon teams, internships, and open-source collaboration. I have built concurrency-safe web systems (BookMySeat with Django, PostgreSQL and Redis) and led a team of seven developers during my internships at ElevanceSkills Technologies and ESPECA Technologies.
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.35}>
             <p className="text-[--ghost-400] text-base sm:text-lg leading-relaxed mb-4 font-mono">
-              My technical expertise spans Python, TypeScript, and Java, alongside databases like PostgreSQL (including pgvector and HNSW indexing for AI search), MongoDB, and MySQL, and cloud/DevOps platforms like Google Cloud Services, AWS, and Docker.
+              My technical expertise spans Python, Java, Go, and TypeScript, AI/LLM tooling like LangGraph, the Claude and Gemini APIs, and RAG, databases like PostgreSQL (pgvector, HNSW, PostGIS), MongoDB, and MySQL, and cloud/DevOps platforms like Google Cloud (Cloud Run, Cloud SQL, Vertex AI), AWS, and Docker.
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.45}>
             <p className="text-[--ghost-400] text-base sm:text-lg leading-relaxed font-mono">
-              Beyond engineering, I am a Technical Team Member at TSEC CodeStorm and a Student Ambassador for Ai+ Smartphone, blending leadership, technical coordination, and a passion for ethical hacking.
+              Beyond engineering, I am a Technical Team Member at TSEC CodeStorm (led planning for Codessiance '26) and a Student Ambassador for Ai+ Smartphone. I hold a Google Cloud Skill Badge (Vertex AI) and am a Postman API Fundamentals Student Expert.
             </p>
           </ScrollReveal>
         </section>

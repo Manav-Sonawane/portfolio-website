@@ -11,9 +11,9 @@ export const leftColumn: Experience[] = [
     role: "Full Stack Web Developer Intern",
     org: "ElevanceSkills Technologies",
     points: [
-      "Developed BookMySeat movie ticket booking platform using Django.",
-      "Implemented concurrency control, session caching, authentication, payment gateway integration.",
-      "Built an admin panel with analytics dashboards and movie management features.",
+      "Built BookMySeat end-to-end, a BookMyShow-style movie ticket booking platform, from Django backend and PostgreSQL schema through the customer-facing UI.",
+      "Implemented concurrency-safe seat reservation, Redis-backed session caching, JWT/OAuth authentication, payment gateway integration, and automated email confirmations.",
+      "Built an admin panel with analytics dashboards and movie management, and used Cron-scheduled jobs for routine data upkeep.",
     ],
   },
   {
@@ -21,6 +21,7 @@ export const leftColumn: Experience[] = [
     role: "Technical Team Member",
     org: "TSEC CodeStorm",
     points: [
+      "Led planning for Codessiance '26.",
       "Worked on UI revamps and frontend improvements",
       "Organized hackathons and technical events",
       "Contributed to open-source initiatives",
@@ -34,9 +35,9 @@ export const rightColumn: Experience[] = [
     role: "Technical Project Manager Intern",
     org: "ESPECA Technologies",
     points: [
-      "Led a team of seven developers using ClickUp for project coordination.",
-      "Contributed to backend development using Flask, FastAPI and MySQL.",
-      "Designed REST APIs and optimized database queries for better performance.",
+      "Led a team of seven developers end-to-end across sprint planning, risk management, and delivery using ClickUp.",
+      "Contributed to backend development using Flask, FastAPI, and MySQL.",
+      "Designed REST APIs and optimized database queries.",
     ],
   },
   {

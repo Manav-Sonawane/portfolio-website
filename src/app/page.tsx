@@ -40,14 +40,14 @@ export default async function Home() {
 
           <ScrollReveal delay={0.2}>
             <p className="text-[--ghost-400] mb-4 max-w-xl text-base sm:text-lg md:text-xl leading-relaxed">
-              Pursuing B.E. I.T. @ TSEC &nbsp;|&nbsp; Python &amp; Web Developer
+              Pursuing B.E. I.T. @ TSEC &nbsp;|&nbsp; Full-Stack Developer &amp; AI Builder
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.3}>
             <ul className="text-sm sm:text-base text-[--phosphor-400]/80 space-y-1 mb-6 font-mono">
               <li><span className="text-[--phosphor-600]">&gt;</span> Location: Mumbai, India</li>
-              <li><span className="text-[--phosphor-600]">&gt;</span> Focus: backend systems · ethical hacking · full-stack</li>
+              <li><span className="text-[--phosphor-600]">&gt;</span> Focus: full-stack · AI/LLM systems · backend</li>
               <li><span className="text-[--phosphor-600]">&gt;</span> Currently: TE IT @ TSEC (CGPA 9.12)</li>
             </ul>
           </ScrollReveal>

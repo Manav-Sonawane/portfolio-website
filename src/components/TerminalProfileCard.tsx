@@ -13,9 +13,9 @@ export default function TerminalProfileCard() {
         <p className="text-[--phosphor-400]">&gt;&gt; cat system_profile.txt</p>
         <div className="mt-3 space-y-1.5 text-[--ghost-400]">
           <p className="text-[--phosphor-100] font-semibold">SYSTEM PROFILE</p>
-          <p><span className="text-[--phosphor-400]">Role:</span> Backend / Full-Stack</p>
-          <p><span className="text-[--phosphor-400]">Focus:</span> APIs, backend systems, scalability</p>
-          <p><span className="text-[--phosphor-400]">Exp:</span> Internships, tech teams, ambassador</p>
+          <p><span className="text-[--phosphor-400]">Role:</span> Full-Stack / AI Builder</p>
+          <p><span className="text-[--phosphor-400]">Focus:</span> APIs, LLM agents, scalable systems</p>
+          <p><span className="text-[--phosphor-400]">Exp:</span> Internships, hackathons, tech teams</p>
           <p><span className="text-[--phosphor-400]">Leadership:</span> Yes</p>
           <p><span className="text-[--phosphor-400]">Location:</span> Mumbai, India</p>
           <p className="mt-2 text-[--ghost-700] italic">Status: Designing systems. Shipping code.</p>

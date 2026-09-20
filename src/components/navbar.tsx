@@ -48,7 +48,7 @@ export default function Navbar() {
           })}
         </ul>
         <a
-          href="/Resume_Manav.pdf"
+          href="/Resume_Manav.docx"
           download
           className="border border-[--phosphor-600] px-4 py-1 text-sm text-[--phosphor-400] hover:bg-[--phosphor-400] hover:text-black transition-all duration-200 rounded-sm"
           style={{ boxShadow: "0 0 0 0 rgba(74,222,128,0)" }}
