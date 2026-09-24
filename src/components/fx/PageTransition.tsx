@@ -14,9 +14,15 @@ const TITLES: Record<string, string> = {
   "/contact": "Contact",
 };
 
+/** Programmatic navigation that plays the curtain (used by the command palette). */
+export function navigateWithTransition(href: string) {
+  window.dispatchEvent(new CustomEvent("app:navigate", { detail: href }));
+}
+
 /**
- * Curtain transition. Intercepts internal link clicks, sweeps a panel up over the
- * page, navigates underneath it, then lifts it once the new route has committed.
+ * Curtain transition. Intercepts internal link clicks (capture phase, so it runs before
+ * next/link), sweeps a panel over the page, navigates underneath, then lifts it once the
+ * new route has committed.
  */
 export default function PageTransition() {
   const pathname = usePathname();
@@ -59,22 +65,12 @@ export default function PageTransition() {
     gsap.set(curtain.current, { y: 0, yPercent: 100 });
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const onClick = (e: MouseEvent) => {
-      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      const a = (e.target as Element).closest?.("a");
-      if (!a) return;
-      const href = a.getAttribute("href");
-      if (!href || !href.startsWith("/") || href.startsWith("//")) return;
-      if (a.target === "_blank" || a.hasAttribute("download")) return;
-
+    const go = (href: string) => {
       const url = new URL(href, window.location.origin);
       if (url.pathname === window.location.pathname) {
-        if (url.hash) return;
-        e.preventDefault();
-        getLenis()?.scrollTo(0);
+        if (!url.hash) getLenis()?.scrollTo(0);
         return;
       }
-      e.preventDefault();
       if (busy.current) return;
       if (reduce) {
         router.push(href);
@@ -102,9 +98,27 @@ export default function PageTransition() {
         .to([label.current, sub.current], { yPercent: 0, opacity: 1, duration: 0.7, ease: "expo.out", stagger: 0.06 }, "-=0.35");
     };
 
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = (e.target as Element).closest?.("a");
+      if (!a) return;
+      const href = a.getAttribute("href");
+      if (!href || !href.startsWith("/") || href.startsWith("//")) return;
+      if (a.target === "_blank" || a.hasAttribute("download")) return;
+      const url = new URL(href, window.location.origin);
+      if (url.pathname === window.location.pathname && url.hash) return;
+      e.preventDefault();
+      go(href);
+    };
+    const onNavigate = (e: Event) => go((e as CustomEvent<string>).detail);
+
     // capture phase: must run before next/link's own (React root) click handler navigates instantly
     document.addEventListener("click", onClick, true);
-    return () => document.removeEventListener("click", onClick, true);
+    window.addEventListener("app:navigate", onNavigate);
+    return () => {
+      document.removeEventListener("click", onClick, true);
+      window.removeEventListener("app:navigate", onNavigate);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
@@ -119,14 +133,14 @@ export default function PageTransition() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(60% 50% at 50% 100%, rgba(124,108,255,0.28), transparent 70%), radial-gradient(40% 40% at 80% 20%, rgba(198,255,77,0.1), transparent 70%)",
+            "radial-gradient(60% 50% at 50% 100%, rgba(86,216,255,0.18), transparent 70%), repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 4px)",
         }}
       />
       <div className="relative overflow-hidden">
-        <span ref={label} className="display-xl block italic text-paper" />
+        <span ref={label} className="display-xl block text-paper" />
       </div>
       <div className="relative mt-4 overflow-hidden">
-        <span ref={sub} className="label block" />
+        <span ref={sub} className="label block !text-signal" />
       </div>
     </div>
   );

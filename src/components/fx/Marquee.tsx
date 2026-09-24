@@ -21,7 +21,7 @@ export default function Marquee({
   reverse = false,
   className = "",
   itemClassName = "",
-  separator = <span className="mx-8 text-signal">✦</span>,
+  separator = <span className="mx-8 text-signal">{"//"}</span>,
 }: MarqueeProps) {
   const track = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();

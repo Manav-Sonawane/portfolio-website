@@ -29,7 +29,7 @@ export default function BigCTA() {
     <section ref={root} className="relative mx-auto max-w-[1400px] px-6 py-28 sm:px-10 md:py-40">
       <div
         className="cta-orb pointer-events-none absolute left-1/2 top-1/2 h-[60vmax] w-[60vmax] -translate-x-1/2 -translate-y-1/2 rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(198,255,77,0.10), rgba(124,108,255,0.10) 40%, transparent 68%)" }}
+        style={{ background: "radial-gradient(circle, rgba(86,216,255,0.10), rgba(70,120,255,0.10) 40%, transparent 68%)" }}
       />
       <div className="relative">
         <ScrollReveal>

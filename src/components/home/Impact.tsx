@@ -6,6 +6,7 @@ import { gsap, useGSAP } from "@/lib/gsap";
 import GlassPanel from "@/components/fx/GlassPanel";
 import ScrollReveal from "@/components/fx/ScrollReveal";
 import SplitReveal from "@/components/fx/SplitReveal";
+import SectionHead from "@/components/fx/SectionHead";
 import CountUp from "@/components/fx/CountUp";
 import { profile } from "@/lib/profile";
 import type { GitHubStats } from "@/lib/github";
@@ -35,10 +36,8 @@ export default function Impact({ github, leetcode }: { github: GitHubStats; leet
     <section ref={root} className="mx-auto w-full max-w-[1400px] px-6 py-24 sm:px-10 md:py-32">
       <div className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <div>
-          <ScrollReveal>
-            <p className="label mb-5">By the numbers — 02</p>
-          </ScrollReveal>
-          <SplitReveal as="h2" className="display-lg max-w-[14ch]">
+          <SectionHead n="02" title="By the numbers" className="mb-8 w-full md:w-[560px]" />
+          <SplitReveal as="h2" className="display-lg max-w-[16ch]">
             Consistency, <em>measured.</em>
           </SplitReveal>
         </div>
@@ -72,11 +71,11 @@ export default function Impact({ github, leetcode }: { github: GitHubStats; leet
               <p className="label mt-3">Followers</p>
             </div>
           </div>
-          <div className="mt-8 overflow-hidden rounded-xl border border-white/10 bg-black/30 p-3">
-            {/* ghchart renders on a light palette; invert + a blue-violet seed color gives a lime-on-dark heatmap */}
+          <div className="mt-8 overflow-hidden rounded-[2px] border border-white/10 bg-black/30 p-3">
+            {/* ghchart renders on a light palette; invert + a rust seed color gives a cyan-on-dark heatmap */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={`https://ghchart.rshah.org/3900b2/${github.login}`}
+              src={`https://ghchart.rshah.org/a92700/${github.login}`}
               alt="GitHub contribution graph"
               className="h-auto w-full opacity-90"
               style={{ filter: "invert(1)" }}
@@ -103,8 +102,8 @@ export default function Impact({ github, leetcode }: { github: GitHubStats; leet
                   <span className="text-mute">{b.label}</span>
                   <span className="text-paper">{b.value}</span>
                 </div>
-                <div className="h-1.5 overflow-hidden rounded-full bg-white/8">
-                  <div className="lc-bar h-full origin-left rounded-full" style={{ width: `${(b.value / total) * 100}%`, background: b.color }} />
+                <div className="h-1.5 overflow-hidden bg-white/8">
+                  <div className="lc-bar h-full origin-left" style={{ width: `${(b.value / total) * 100}%`, background: b.color }} />
                 </div>
               </div>
             ))}

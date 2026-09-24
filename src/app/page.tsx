@@ -15,7 +15,7 @@ export default async function Home() {
       <Hero />
 
       <div className="border-y border-white/10 py-7">
-        <Marquee items={stack} duration={70} className="display-md text-outline" itemClassName="italic" />
+        <Marquee items={stack} duration={70} className="display-md text-outline" />
       </div>
 
       <FeaturedWork />

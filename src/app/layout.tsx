@@ -7,6 +7,8 @@ import Backdrop from "@/components/fx/Backdrop";
 import Cursor from "@/components/fx/Cursor";
 import Preloader from "@/components/fx/Preloader";
 import PageTransition from "@/components/fx/PageTransition";
+import Hud from "@/components/Hud";
+import CommandPalette from "@/components/CommandPalette";
 
 export const metadata: Metadata = {
   title: {
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#06060a",
+  themeColor: "#070b13",
   colorScheme: "dark",
 };
 
@@ -76,6 +78,8 @@ export default function RootLayout({
         <Preloader />
         <PageTransition />
         <Navbar />
+        <Hud />
+        <CommandPalette />
         <div className="relative flex min-h-screen flex-col">
           <div className="flex flex-1 flex-col">{children}</div>
           <Footer />

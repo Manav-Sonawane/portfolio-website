@@ -30,10 +30,10 @@ const badgeConfig: Record<string, Badge> = {
   Flask: { label: "Flask", color: "FFFFFF", logo: "flask" },
   FastAPI: { label: "FastAPI", color: "009688", logo: "fastapi" },
   Spring_Boot: { label: "Spring Boot", color: "6DB33F", logo: "springboot" },
-  REST: { label: "REST", color: "C6FF4D" },
+  REST: { label: "REST", color: "56D8FF" },
   GraphQL: { label: "GraphQL", color: "E10098", logo: "graphql" },
   JWT: { label: "JWT", color: "D63AFF", logo: "jsonwebtokens" },
-  OAuth_2: { label: "OAuth 2.0", color: "C6FF4D" },
+  OAuth_2: { label: "OAuth 2.0", color: "56D8FF" },
   "Socket.io": { label: "Socket.io", color: "FFFFFF", logo: "socketdotio" },
   Spring_Security: { label: "Spring Security", color: "6DB33F", logo: "springsecurity" },
   PostgreSQL: { label: "PostgreSQL", color: "4169E1", logo: "postgresql" },
@@ -48,10 +48,10 @@ const badgeConfig: Record<string, Badge> = {
   Claude_API: { label: "Claude API", color: "D97757", logo: "claude" },
   Gemini_API: { label: "Gemini API", color: "8E75B2", logo: "googlegemini" },
   Groq: { label: "Groq (Llama 3.1)", color: "F55036" },
-  RAG: { label: "RAG", color: "C6FF4D" },
+  RAG: { label: "RAG", color: "56D8FF" },
   Sentence_Transformers: { label: "sentence-transformers", color: "FFD21E", logo: "huggingface" },
   FAISS: { label: "FAISS", color: "0467DF", logo: "meta" },
-  NLP: { label: "NLP", color: "C6FF4D" },
+  NLP: { label: "NLP", color: "56D8FF" },
   Docker: { label: "Docker", color: "2496ED", logo: "docker" },
   Git: { label: "Git", color: "F05032", logo: "git" },
   GitHub: { label: "GitHub", color: "FFFFFF", logo: "github" },
@@ -102,7 +102,7 @@ function SkillPill({ skill, amber }: { skill: string; amber?: boolean }) {
 
   return (
     <li
-      className="group/pill relative flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] py-2 pl-3 pr-4 font-mono text-[0.78rem] text-paper/85 transition-all duration-500 hover:-translate-y-0.5 hover:border-[var(--brand)] hover:bg-[color-mix(in_srgb,var(--brand)_12%,transparent)] hover:text-paper"
+      className="group/pill relative flex items-center gap-2.5 rounded-[2px] border border-white/10 bg-white/[0.03] py-1.5 pl-2.5 pr-3.5 font-mono text-[0.74rem] text-paper/85 transition-all duration-500 hover:-translate-y-0.5 hover:border-[var(--brand)] hover:bg-[color-mix(in_srgb,var(--brand)_12%,transparent)] hover:text-paper"
       style={{ ["--brand" as string]: `#${brand}` }}
     >
       {cfg.logo && !failed ? (
@@ -117,7 +117,7 @@ function SkillPill({ skill, amber }: { skill: string; amber?: boolean }) {
           className="h-4 w-4 opacity-55 grayscale transition-all duration-500 group-hover/pill:opacity-100 group-hover/pill:grayscale-0"
         />
       ) : (
-        <span className="h-1.5 w-1.5 rounded-full bg-[var(--brand)] opacity-70" />
+        <span className="h-1.5 w-1.5 bg-[var(--brand)] opacity-70" />
       )}
       {cfg.label}
       {active && <span className="live-dot !h-[6px] !w-[6px]" title="Actively using" />}
@@ -130,9 +130,9 @@ export default function Skills() {
 
   return (
     <main className="flex-1">
-      <section className="mx-auto max-w-[1400px] px-6 pb-16 pt-36 sm:px-10 md:pt-44">
+      <section className="mx-auto max-w-[1400px] px-6 pb-14 pt-32 sm:px-10 md:pt-40">
         <ScrollReveal intro y={14}>
-          <p className="label mb-8">~/skills</p>
+          <p className="label mb-6 !text-signal">~/skills.json</p>
         </ScrollReveal>
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <SplitReveal as="h1" intro className="display-xl max-w-[12ch]">
@@ -152,11 +152,14 @@ export default function Skills() {
             const amber = AMBER_CATEGORIES.includes(cat);
             const items = skills[cat];
             return (
-              <GlassPanel key={cat} className={`p-7 sm:p-8 ${span}`}>
-                <div className="mb-6 flex items-baseline justify-between">
-                  <h2 className={`display-md ${amber ? "text-amber" : ""}`}>{cat === "AI_LLM" ? "AI / LLM" : cat.replace(/_/g, " & ")}</h2>
-                  <span className="whitespace-nowrap font-mono text-[0.7rem] text-dim">
-                    {String(i + 1).padStart(2, "0")} · {items.length}
+              <GlassPanel key={cat} className={`p-6 pt-0 sm:p-7 sm:pt-0 ${span}`}>
+                <div className="-mx-6 mb-5 flex items-center justify-between border-b border-white/10 bg-white/[0.035] px-5 py-2.5 sm:-mx-7 sm:px-6">
+                  <h2 className={`font-mono text-[0.72rem] uppercase tracking-[0.2em] ${amber ? "text-amber" : "text-paper"}`}>
+                    <span className="text-dim">{"// "}</span>
+                    {cat === "AI_LLM" ? "AI / LLM" : cat.replace(/_/g, " & ")}
+                  </h2>
+                  <span className="whitespace-nowrap font-mono text-[0.66rem] tracking-[0.14em] text-dim">
+                    {String(i + 1).padStart(2, "0")} · [{String(items.length).padStart(2, "0")}]
                   </span>
                 </div>
                 <ul className="flex flex-wrap gap-2.5">
@@ -171,7 +174,7 @@ export default function Skills() {
       </section>
 
       <div className="mt-16 border-y border-white/10 py-7">
-        <Marquee items={allLabels} duration={120} className="display-md text-outline" itemClassName="italic" />
+        <Marquee items={allLabels} duration={120} className="display-md text-outline" />
       </div>
 
       <BigCTA />

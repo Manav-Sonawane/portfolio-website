@@ -6,6 +6,7 @@ import { gsap } from "@/lib/gsap";
 import SplitReveal from "@/components/fx/SplitReveal";
 import ScrollReveal from "@/components/fx/ScrollReveal";
 import Magnetic from "@/components/fx/Magnetic";
+import Corners from "@/components/fx/Corners";
 import LocalTime from "@/components/fx/LocalTime";
 import { contacts, profile } from "@/lib/profile";
 
@@ -28,13 +29,13 @@ export default function Contact() {
 
   return (
     <main className="flex-1">
-      <section className="mx-auto max-w-[1400px] px-6 pb-10 pt-36 sm:px-10 md:pt-44">
+      <section className="mx-auto max-w-[1400px] px-6 pb-10 pt-32 sm:px-10 md:pt-40">
         <ScrollReveal intro y={14}>
-          <p className="label mb-8 flex items-center gap-3">
+          <p className="label mb-6 flex items-center gap-3 !text-signal">
             <span className="live-dot" /> ~/contact — open to collaboration
           </p>
         </ScrollReveal>
-        <SplitReveal as="h1" intro className="display-xl max-w-[19ch]">
+        <SplitReveal as="h1" intro className="display-xl max-w-[26ch]">
           Let&apos;s build something <em>meaningful.</em>
         </SplitReveal>
       </section>
@@ -42,18 +43,21 @@ export default function Contact() {
       {/* Email — the hero interaction */}
       <section className="mx-auto max-w-[1400px] px-6 py-14 sm:px-10">
         <ScrollReveal>
-          <div className="glass group relative overflow-hidden p-8 sm:p-14">
+          <div className="glass group relative !overflow-visible">
+            <Corners />
+            <div className="titlebar">contact.sh</div>
+            <div className="relative overflow-hidden p-8 sm:p-14">
             <div
               className="pointer-events-none absolute inset-0 -z-10 opacity-70"
-              style={{ background: "radial-gradient(60% 90% at 100% 0%, rgba(198,255,77,0.14), transparent 60%), radial-gradient(50% 70% at 0% 100%, rgba(124,108,255,0.16), transparent 65%)" }}
+              style={{ background: "radial-gradient(60% 90% at 100% 0%, rgba(86,216,255,0.14), transparent 60%), radial-gradient(50% 70% at 0% 100%, rgba(70,120,255,0.16), transparent 65%)" }}
             />
-            <p className="label mb-6">Drop me a line</p>
+            <p className="label mb-6 normal-case !tracking-normal"><span className="text-signal">$</span> mail --to manav <span className="text-dim"># click the address to copy</span></p>
             <button
               type="button"
               onClick={copy}
               data-cursor="copy"
               aria-label={`Copy email address ${profile.email}`}
-              className="block text-left font-display text-[clamp(1.6rem,5.6vw,5.6rem)] leading-none tracking-[-0.03em] break-all transition-colors duration-500 hover:text-signal sm:break-normal"
+              className="block text-left font-display text-[clamp(1.25rem,4.3vw,4.3rem)] font-semibold leading-none tracking-tight break-all transition-colors duration-500 hover:text-signal sm:break-normal"
             >
               {profile.email}
             </button>
@@ -69,6 +73,7 @@ export default function Contact() {
                 </span>
                 {copied ? "Copied to clipboard" : "Copy address"}
               </button>
+            </div>
             </div>
           </div>
         </ScrollReveal>
@@ -105,7 +110,7 @@ export default function Contact() {
                 <span className="relative font-mono text-xs text-dim transition-colors duration-500 group-hover:text-black/60">0{i + 1}</span>
                 <span className="relative display-md transition-all duration-500 group-hover:translate-x-2 group-hover:text-black sm:col-span-1">{c.label}</span>
                 <span className="relative hidden text-mute transition-colors duration-500 group-hover:text-black/70 sm:block">{c.value}</span>
-                <span className="relative grid h-11 w-11 place-items-center rounded-full border border-white/15 transition-all duration-500 group-hover:rotate-45 group-hover:border-black group-hover:text-black">
+                <span className="relative grid h-11 w-11 place-items-center rounded-[2px] border border-white/15 transition-all duration-500 group-hover:rotate-45 group-hover:border-black group-hover:text-black">
                   <ArrowUpRight size={18} weight="light" />
                 </span>
               </a>

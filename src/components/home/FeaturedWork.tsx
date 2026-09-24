@@ -6,6 +6,8 @@ import { ArrowUpRight, GithubLogo } from "@phosphor-icons/react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import SplitReveal from "@/components/fx/SplitReveal";
 import ScrollReveal from "@/components/fx/ScrollReveal";
+import SectionHead from "@/components/fx/SectionHead";
+import Corners from "@/components/fx/Corners";
 import { projects } from "@/lib/projects";
 
 const featured = projects.filter((p) => p.featured);
@@ -54,10 +56,8 @@ export default function FeaturedWork() {
         {/* Intro panel */}
         <div className="flex shrink-0 flex-col justify-between lg:w-[30vw] lg:max-w-[440px] motion-reduce:lg:w-full motion-reduce:lg:max-w-none">
           <div>
-            <ScrollReveal>
-              <p className="label mb-6">Selected work — 01</p>
-            </ScrollReveal>
-            <SplitReveal as="h2" className="display-lg">
+            <SectionHead n="01" title="Selected work" className="mb-8" />
+            <SplitReveal as="h2" className="display-lg text-[clamp(1.7rem,2.9vw,3rem)]">
               Things I&apos;ve <em>shipped</em>, end to end.
             </SplitReveal>
             <ScrollReveal delay={0.15}>
@@ -84,24 +84,25 @@ export default function FeaturedWork() {
             className="glass group relative flex min-h-[460px] shrink-0 flex-col justify-between p-7 sm:p-10 lg:w-[min(64vw,880px)] motion-reduce:lg:w-full"
             style={{ ["--accent" as string]: p.accent }}
           >
+            <Corners />
             {/* accent aurora */}
             <div
               className="pointer-events-none absolute inset-0 -z-10 opacity-80 transition-opacity duration-700 group-hover:opacity-100"
               style={{ background: `radial-gradient(70% 80% at 85% 0%, ${p.accent}33, transparent 60%), radial-gradient(50% 60% at 0% 100%, ${p.accent}14, transparent 65%)` }}
             />
-            <span className="work-num pointer-events-none absolute -right-4 -top-10 select-none font-display text-[22rem] italic leading-none text-outline opacity-60 sm:text-[28rem]">
+            <span className="work-num pointer-events-none absolute -right-4 -top-10 select-none font-display text-[16rem] font-bold leading-none text-outline opacity-50 sm:text-[22rem]">
               {i + 1}
             </span>
 
             <div className="relative flex items-start justify-between gap-4">
               <span className="chip" style={{ color: p.accent, borderColor: `${p.accent}55` }}>
-                {p.category}
+                PRJ.00{i + 1} · {p.category}
               </span>
               <span className="label">0{i + 1} / 0{featured.length}</span>
             </div>
 
             <div className="relative mt-16">
-              <h3 className="display-lg">{p.title}</h3>
+              <h3 className="display-lg normal-case">{p.title}</h3>
               <p className="prose-lead mt-4 max-w-xl">{p.tagline}</p>
               <p className="mt-5 max-w-xl text-sm leading-relaxed text-mute/80">{p.highlights[0]}</p>
             </div>
@@ -130,7 +131,7 @@ export default function FeaturedWork() {
         <Link
           href="/projects"
           data-cursor="all"
-          className="group flex shrink-0 flex-col items-center justify-center gap-6 rounded-3xl border border-dashed border-white/15 p-10 text-center transition-colors duration-500 hover:border-signal/60 lg:w-[26vw] lg:max-w-[380px] motion-reduce:lg:w-full motion-reduce:lg:max-w-none"
+          className="group flex shrink-0 flex-col items-center justify-center gap-6 rounded-[3px] border border-dashed border-white/15 p-10 text-center transition-colors duration-500 hover:border-signal/60 lg:w-[26vw] lg:max-w-[380px] motion-reduce:lg:w-full motion-reduce:lg:max-w-none"
         >
           <span className="display-md">
             All <em>{projects.length}</em> projects
